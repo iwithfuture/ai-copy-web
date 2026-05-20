@@ -3,3 +3,5 @@ fix-static-brand.js
 target-index.html
 .DS_Store
 Thumbs.db
+
+.vercel
