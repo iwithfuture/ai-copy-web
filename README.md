@@ -1,32 +1,22 @@
-# 吾日三省吾身 Hanto Global Static Site
+﻿# 鍚炬棩涓夌渷鍚捐韩 Hanto Global Static Site
 
-这是一个复刻 `hantoglobal.com` 风格的静态网站项目，包含首页、服务页、营销页、AI 增长页、行业方案页、资源页、案例页、工具页和联系页。
-
-## 本地预览
+杩欐槸涓€涓鍒?`hantoglobal.com` 椋庢牸鐨勯潤鎬佺綉绔欓」鐩紝鍖呭惈棣栭〉銆佹湇鍔￠〉銆佽惀閿€椤点€丄I 澧為暱椤点€佽涓氭柟妗堥〉銆佽祫婧愰〉銆佹渚嬮〉銆佸伐鍏烽〉鍜岃仈绯婚〉銆?
+## 鏈湴棰勮
 
 ```bash
 node server.js
 ```
 
-然后访问：
-
+鐒跺悗璁块棶锛?
 ```text
 http://127.0.0.1:4173/
 ```
 
-## 部署到 GitHub Pages
+## 閮ㄧ讲鍒?GitHub Pages
 
-1. 将本项目推送到 GitHub 仓库。
-2. 打开仓库 `Settings -> Pages`。
-3. Source 选择 `Deploy from a branch`。
-4. Branch 选择 `main`，目录选择 `/root`。
-5. 保存后等待 GitHub Pages 构建完成。
+1. 灏嗘湰椤圭洰鎺ㄩ€佸埌 GitHub 浠撳簱銆?2. 鎵撳紑浠撳簱 `Settings -> Pages`銆?3. Source 閫夋嫨 `Deploy from a branch`銆?4. Branch 閫夋嫨 `main`锛岀洰褰曢€夋嫨 `/root`銆?5. 淇濆瓨鍚庣瓑寰?GitHub Pages 鏋勫缓瀹屾垚銆?
+## 鐩綍
 
-## 目录
+- `index.html`锛氶椤?- `pages/`锛氭墍鏈夊唴椤?- `css/site.css`锛氬叏绔欐牱寮?- `js/site.js`锛氬鑸€丗AQ銆乀ab銆佽〃鍗曘€佸伐鍏疯绠楃瓑浜や簰
+- `assets/`锛歀ogo 涓庨〉闈㈠浘鐗囪祫婧?- `server.js`锛氭湰鍦伴潤鎬佹湇鍔″櫒
 
-- `index.html`：首页
-- `pages/`：所有内页
-- `css/site.css`：全站样式
-- `js/site.js`：导航、FAQ、Tab、表单、工具计算等交互
-- `assets/`：Logo 与页面图片资源
-- `server.js`：本地静态服务器
