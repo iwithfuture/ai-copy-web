@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="600" viewBox="0 0 960 600">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#071a2f"/><stop offset="1" stop-color="#4a1d3f"/></linearGradient>
+    <radialGradient id="glow" cx="72%" cy="48%" r="55%"><stop offset="0" stop-color="#f97316" stop-opacity=".42"/><stop offset=".45" stop-color="#f97316" stop-opacity=".12"/><stop offset="1" stop-color="#f97316" stop-opacity="0"/></radialGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="22"/></filter>
+    <style>
+      .label{font:700 18px Inter,'Noto Sans SC','Microsoft YaHei',Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;fill:#facc15}
+      .title{font:800 48px Inter,'Noto Sans SC','Microsoft YaHei',Arial,sans-serif;fill:#fff}
+      .sub{font:500 20px Inter,'Noto Sans SC','Microsoft YaHei',Arial,sans-serif;fill:rgba(255,255,255,.66)}
+      .num{font:800 92px Inter,'Noto Sans SC','Microsoft YaHei',Arial,sans-serif;fill:rgba(255,255,255,.08)}
+    </style>
+  </defs>
+  <rect width="960" height="600" fill="url(#bg)"/>
+  <rect width="960" height="600" fill="url(#glow)"/>
+  <circle cx="811" cy="71" r="170" fill="#f97316" opacity=".14" filter="url(#blur)"/>
+  <circle cx="131" cy="521" r="130" fill="#facc15" opacity=".08" filter="url(#blur)"/>
+  <text x="60" y="112" class="label">AI Analytics</text>
+  <text x="66" y="190" class="title">AI 外贸工具教程</text>
+  <text x="66" y="390" class="sub">AI 建站 · SEO · 广告 · 内容 · 数据增长</text>
+  <text x="62" y="540" class="num">11</text>
+  <g opacity=".18" stroke="#facc15" stroke-width="1"><path d="M120 80v420"/><path d="M198 80v420"/><path d="M276 80v420"/><path d="M354 80v420"/><path d="M432 80v420"/><path d="M510 80v420"/><path d="M588 80v420"/><path d="M666 80v420"/><path d="M744 80v420"/><path d="M90 90h720"/><path d="M90 164h720"/><path d="M90 238h720"/><path d="M90 312h720"/><path d="M90 386h720"/><path d="M90 460h720"/></g><g opacity=".9"><circle cx="365" cy="13" r="5" fill="#f97316"/><circle cx="365" cy="13" r="18" fill="none" stroke="#facc15" opacity=".16"/><circle cx="437" cy="74" r="6" fill="#facc15"/><circle cx="437" cy="74" r="19" fill="none" stroke="#facc15" opacity=".16"/><circle cx="478" cy="-21" r="7" fill="#f97316"/><circle cx="478" cy="-21" r="20" fill="none" stroke="#facc15" opacity=".16"/><circle cx="374" cy="-68" r="5" fill="#facc15"/><circle cx="374" cy="-68" r="21" fill="none" stroke="#facc15" opacity=".16"/><circle cx="327" cy="33" r="6" fill="#f97316"/><circle cx="327" cy="33" r="18" fill="none" stroke="#facc15" opacity=".16"/><circle cx="438" cy="84" r="7" fill="#facc15"/><circle cx="438" cy="84" r="19" fill="none" stroke="#facc15" opacity=".16"/><circle cx="499" cy="109" r="5" fill="#f97316"/><circle cx="499" cy="109" r="20" fill="none" stroke="#facc15" opacity=".16"/><circle cx="534" cy="0" r="6" fill="#facc15"/><circle cx="534" cy="0" r="21" fill="none" stroke="#facc15" opacity=".16"/><path d="M510 310C575 190 688 186 780 112" fill="none" stroke="#f97316" stroke-width="5" stroke-linecap="round"/><path d="M510 372c82-92 170-92 280-14" fill="none" stroke="#facc15" stroke-width="4" opacity=".55"/><rect x="500" y="170" width="280" height="160" rx="24" fill="rgba(255,255,255,.08)" stroke="#facc15" stroke-width="2"/><path d="M540 250h78M540 286h146M540 214h186" stroke="#facc15" stroke-width="10" stroke-linecap="round" opacity=".55"/></g>
+</svg>

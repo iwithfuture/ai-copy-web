@@ -2,6 +2,7 @@ generate-site.js
 fix-static-brand.js
 repair-static-pages.js
 remove-brand-icons.js
+make-topic-visuals.js
 target-index.html
 .DS_Store
 Thumbs.db

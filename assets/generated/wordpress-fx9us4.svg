@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="600" viewBox="0 0 960 600">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#051923"/><stop offset="1" stop-color="#143642"/></linearGradient>
+    <radialGradient id="glow" cx="72%" cy="48%" r="55%"><stop offset="0" stop-color="#00b4d8" stop-opacity=".42"/><stop offset=".45" stop-color="#00b4d8" stop-opacity=".12"/><stop offset="1" stop-color="#00b4d8" stop-opacity="0"/></radialGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="22"/></filter>
+    <style>
+      .label{font:700 18px Inter,'Noto Sans SC','Microsoft YaHei',Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;fill:#90e0ef}
+      .title{font:800 48px Inter,'Noto Sans SC','Microsoft YaHei',Arial,sans-serif;fill:#fff}
+      .sub{font:500 20px Inter,'Noto Sans SC','Microsoft YaHei',Arial,sans-serif;fill:rgba(255,255,255,.66)}
+      .num{font:800 92px Inter,'Noto Sans SC','Microsoft YaHei',Arial,sans-serif;fill:rgba(255,255,255,.08)}
+    </style>
+  </defs>
+  <rect width="960" height="600" fill="url(#bg)"/>
+  <rect width="960" height="600" fill="url(#glow)"/>
+  <circle cx="724" cy="124" r="170" fill="#00b4d8" opacity=".14" filter="url(#blur)"/>
+  <circle cx="164" cy="474" r="130" fill="#90e0ef" opacity=".08" filter="url(#blur)"/>
+  <text x="60" y="112" class="label">Website System</text>
+  <text x="66" y="190" class="title">WordPress 教程</text>
+  <text x="66" y="390" class="sub">AI 建站 · SEO · 广告 · 内容 · 数据增长</text>
+  <text x="62" y="540" class="num">64</text>
+  <g opacity=".18" stroke="#90e0ef" stroke-width="1"><path d="M120 80v420"/><path d="M198 80v420"/><path d="M276 80v420"/><path d="M354 80v420"/><path d="M432 80v420"/><path d="M510 80v420"/><path d="M588 80v420"/><path d="M666 80v420"/><path d="M744 80v420"/><path d="M90 90h720"/><path d="M90 164h720"/><path d="M90 238h720"/><path d="M90 312h720"/><path d="M90 386h720"/><path d="M90 460h720"/></g><g opacity=".9"><circle cx="674" cy="377" r="5" fill="#00b4d8"/><circle cx="674" cy="377" r="18" fill="none" stroke="#90e0ef" opacity=".16"/><circle cx="722" cy="381" r="6" fill="#90e0ef"/><circle cx="722" cy="381" r="19" fill="none" stroke="#90e0ef" opacity=".16"/><circle cx="751" cy="383" r="7" fill="#00b4d8"/><circle cx="751" cy="383" r="20" fill="none" stroke="#90e0ef" opacity=".16"/><circle cx="770" cy="384" r="5" fill="#90e0ef"/><circle cx="770" cy="384" r="21" fill="none" stroke="#90e0ef" opacity=".16"/><circle cx="655" cy="259" r="6" fill="#00b4d8"/><circle cx="655" cy="259" r="18" fill="none" stroke="#90e0ef" opacity=".16"/><circle cx="732" cy="197" r="7" fill="#90e0ef"/><circle cx="732" cy="197" r="19" fill="none" stroke="#90e0ef" opacity=".16"/><circle cx="646" cy="291" r="5" fill="#00b4d8"/><circle cx="646" cy="291" r="20" fill="none" stroke="#90e0ef" opacity=".16"/><circle cx="738" cy="149" r="6" fill="#90e0ef"/><circle cx="738" cy="149" r="21" fill="none" stroke="#90e0ef" opacity=".16"/><path d="M510 310C575 190 688 186 780 112" fill="none" stroke="#00b4d8" stroke-width="5" stroke-linecap="round"/><path d="M510 372c82-92 170-92 280-14" fill="none" stroke="#90e0ef" stroke-width="4" opacity=".55"/><rect x="500" y="170" width="280" height="160" rx="24" fill="rgba(255,255,255,.08)" stroke="#90e0ef" stroke-width="2"/><path d="M540 250h78M540 286h146M540 214h186" stroke="#90e0ef" stroke-width="10" stroke-linecap="round" opacity=".55"/></g>
+</svg>
