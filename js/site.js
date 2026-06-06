@@ -208,20 +208,24 @@ function enhanceHomeLikeDemo() {
         <a href="https://demo.iwithfuture.com/" target="_blank" rel="noopener">查看 Demo</a>
       </div>
       <div class="template-tabs">
-        <button class="active" type="button">B2B 工厂</button>
-        <button type="button">机械设备</button>
-        <button type="button">家居建材</button>
-        <button type="button">服务公司</button>
+        <button class="active" type="button" data-template-category="machinery">机械设备</button>
+        <button type="button" data-template-category="parts">工业零部件</button>
+        <button type="button" data-template-category="home">家居建材</button>
+        <button type="button" data-template-category="electronics">电子电器</button>
+        <button type="button" data-template-category="beauty">美妆个护</button>
+        <button type="button" data-template-category="medical">医疗器械</button>
+        <button type="button" data-template-category="energy">新能源</button>
+        <button type="button" data-template-category="ecommerce">跨境电商</button>
       </div>
       <div class="template-grid-mini">
         <a href="https://demo.iwithfuture.com/" target="_blank" rel="noopener" class="template-card-mini">
-          <i></i><strong>产品目录型官网</strong><span>适合 B2B 工厂</span>
+          <i></i><strong>机械设备官网 Demo</strong><span>适合设备工厂和出口制造商</span>
         </a>
         <a href="https://demo.iwithfuture.com/" target="_blank" rel="noopener" class="template-card-mini">
-          <i></i><strong>技术资料型官网</strong><span>适合工业设备</span>
+          <i></i><strong>产品目录 + 询盘</strong><span>展示设备分类、参数和应用场景</span>
         </a>
         <a href="https://demo.iwithfuture.com/" target="_blank" rel="noopener" class="template-card-mini">
-          <i></i><strong>品牌展示型官网</strong><span>适合服务企业</span>
+          <i></i><strong>资料下载型页面</strong><span>承接规格书、案例和技术资料</span>
         </a>
       </div>
       <div class="template-metrics">
@@ -231,6 +235,64 @@ function enhanceHomeLikeDemo() {
       </div>
     </div>`;
   hero.appendChild(stage);
+  const templateData = {
+    machinery: [
+      ["机械设备官网 Demo", "适合设备工厂和出口制造商"],
+      ["产品目录 + 询盘", "展示设备分类、参数和应用场景"],
+      ["资料下载型页面", "承接规格书、案例和技术资料"],
+    ],
+    parts: [
+      ["工业零部件官网 Demo", "适合配件、五金和加工件供应商"],
+      ["参数筛选型目录", "突出型号、材质、规格和兼容性"],
+      ["B2B 询价型页面", "让采购商快速提交图纸和需求"],
+    ],
+    home: [
+      ["家居建材官网 Demo", "适合建材、家具和装饰材料品牌"],
+      ["项目案例型页面", "展示空间效果、安装场景和工程案例"],
+      ["产品系列目录", "适合颜色、尺寸、材质多的产品线"],
+    ],
+    electronics: [
+      ["电子电器官网 Demo", "适合电子产品、电器和智能硬件"],
+      ["技术规格页面", "展示认证、参数、应用和下载资料"],
+      ["经销商询盘入口", "承接批发、代理和 OEM/ODM 需求"],
+    ],
+    beauty: [
+      ["美妆个护官网 Demo", "适合护肤、美妆、个护和 DTC 品牌"],
+      ["品牌故事页面", "突出视觉、功效、成分和用户信任"],
+      ["Shopify 转化入口", "适合后续接入商品、支付和复购"],
+    ],
+    medical: [
+      ["医疗器械官网 Demo", "适合设备、耗材和医疗产品出口"],
+      ["认证资料页面", "突出 CE、FDA、说明书和技术文档"],
+      ["专业询盘路径", "适合经销商、医院和采购商咨询"],
+    ],
+    energy: [
+      ["新能源官网 Demo", "适合储能、光伏、电池和充电产品"],
+      ["解决方案页面", "按应用场景展示系统能力和参数"],
+      ["项目案例页面", "承接工程案例、下载资料和询盘"],
+    ],
+    ecommerce: [
+      ["跨境电商独立站 Demo", "适合 DTC 品牌和在线销售"],
+      ["产品转化页面", "突出卖点、评价、套装和再营销"],
+      ["Shopify 店铺入口", "适合支付、订单、库存和复购"],
+    ],
+  };
+
+  const renderTemplateCards = (category) => {
+    const cards = templateData[category] || templateData.machinery;
+    const grid = stage.querySelector(".template-grid-mini");
+    grid.innerHTML = cards
+      .map(([title, desc]) => `<a href="https://demo.iwithfuture.com/" target="_blank" rel="noopener" class="template-card-mini"><i></i><strong>${title}</strong><span>${desc}</span></a>`)
+      .join("");
+  };
+
+  stage.querySelectorAll("[data-template-category]").forEach((button) => {
+    button.addEventListener("click", () => {
+      stage.querySelectorAll("[data-template-category]").forEach((item) => item.classList.toggle("active", item === button));
+      renderTemplateCards(button.dataset.templateCategory);
+    });
+  });
+
   setTimeout(() => stage.classList.add("visible"), 120);
 
   if (!document.querySelector(".ecosystem-strip")) {
