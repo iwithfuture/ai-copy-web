@@ -5,7 +5,7 @@ const root = __dirname;
 const siteUrl = "https://ai.iwithfuture.com";
 const brand = "吾日三省吾身";
 const brandFull = "吾日三省吾身";
-const defaultImage = `${siteUrl}/assets/hero-hanto-voyage.png`;
+const defaultImage = `${siteUrl}/assets/hero-overseas-growth.png`;
 const today = new Date().toISOString().slice(0, 10);
 
 const descriptionOverrides = {
@@ -192,11 +192,9 @@ function seoHead({ title, desc, url, kind }) {
     `<meta property="og:title" content="${escapedTitle}">`,
     `<meta property="og:description" content="${escapedDesc}">`,
     `<meta property="og:url" content="${escapedUrl}">`,
-    `<meta property="og:image" content="${esc(defaultImage)}">`,
     `<meta name="twitter:card" content="summary_large_image">`,
     `<meta name="twitter:title" content="${escapedTitle}">`,
     `<meta name="twitter:description" content="${escapedDesc}">`,
-    `<meta name="twitter:image" content="${esc(defaultImage)}">`,
     `<meta name="theme-color" content="#2872fa">`,
     `<script type="application/ld+json">${graphFor({ title, desc, url, kind })}</script>`
   ].join("");
