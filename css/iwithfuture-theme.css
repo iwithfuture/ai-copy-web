@@ -1017,6 +1017,17 @@ p {
   overflow: hidden;
 }
 
+.mega-panel .mini-stat {
+  position: static;
+  display: flex;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.mega-panel .mini-stat span {
+  min-width: 86px;
+}
+
 .mega-badges {
   display: flex;
   flex-wrap: wrap;
