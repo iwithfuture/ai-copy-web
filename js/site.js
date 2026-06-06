@@ -178,8 +178,11 @@ function enhanceHomeLikeDemo() {
         <b>iwithfuture.com ecosystem</b>
       </div>
       <div class="template-search">
-        <span>搜索外贸网站模板、行业 Demo、建站方案</span>
-          <a class="template-demo-link" href="https://demo.iwithfuture.com/#machinery" target="_blank" rel="noopener">查看 Demo</a>
+        <label class="template-search-field" for="templateSearchInput">
+          <span>\u641c\u7d22\u6a21\u677f\u3001\u884c\u4e1a Demo \u6216\u5efa\u7ad9\u65b9\u6848</span>
+          <input id="templateSearchInput" type="search" autocomplete="off" placeholder="\u8f93\u5165\u884c\u4e1a\u3001\u529f\u80fd\u6216\u5efa\u7ad9\u65b9\u5f0f" aria-label="\u641c\u7d22\u6a21\u677f\u3001\u884c\u4e1a Demo \u6216\u5efa\u7ad9\u65b9\u6848">
+        </label>
+        <a class="template-demo-link" href="https://demo.iwithfuture.com/#machinery" target="_blank" rel="noopener">\u6253\u5f00 Demo \u5e93</a>
       </div>
       <div class="template-tabs">
         <button class="active" type="button" data-template-category="machinery">机械设备</button>
@@ -263,15 +266,29 @@ function enhanceHomeLikeDemo() {
     ecommerce: "https://demo.iwithfuture.com/#ecommerce",
   };
 
-  const renderTemplateCards = (category) => {
-    const cards = templateData[category] || templateData.machinery;
+  let activeTemplateCategory = "machinery";
+  const searchInput = stage.querySelector("#templateSearchInput");
+
+  const renderTemplateCards = (category = activeTemplateCategory) => {
+    activeTemplateCategory = category;
+    const sourceCards = templateData[category] || templateData.machinery;
+    const query = (searchInput?.value || "").trim().toLowerCase();
+    const cards = query
+      ? sourceCards.filter(([title, desc]) => (title + " " + desc).toLowerCase().includes(query))
+      : sourceCards;
     const grid = stage.querySelector(".template-grid-mini");
     const demoLink = stage.querySelector(".template-demo-link");
     if (demoLink) demoLink.href = templateCategoryLinks[category] || "https://demo.iwithfuture.com/";
+    if (!cards.length) {
+      grid.innerHTML = '<div class="template-empty"><b>\u6ca1\u6709\u627e\u5230\u5339\u914d\u7684 Demo</b><span>\u53ef\u4ee5\u6362\u4e00\u4e2a\u5173\u952e\u8bcd\uff0c\u6216\u70b9\u51fb\u201c\u6253\u5f00 Demo \u5e93\u201d\u67e5\u770b\u5b8c\u6574\u6a21\u677f\u3002</span></div>';
+      return;
+    }
     grid.innerHTML = cards
-      .map(([title, desc, image, link]) => `<a href="${link || templateCategoryLinks[category] || "https://demo.iwithfuture.com/"}" target="_blank" rel="noopener" class="template-card-mini"><span class="template-thumb"><img src="${image}" alt="${title}" loading="lazy"></span><strong>${title}</strong><span>${desc}</span></a>`)
+      .map(([title, desc, image, link]) => '<a href="' + (link || templateCategoryLinks[category] || "https://demo.iwithfuture.com/") + '" target="_blank" rel="noopener" class="template-card-mini"><span class="template-thumb"><img src="' + image + '" alt="' + title + '" loading="lazy"></span><strong>' + title + '</strong><span>' + desc + '</span></a>')
       .join("");
   };
+
+  searchInput?.addEventListener("input", () => renderTemplateCards(activeTemplateCategory));
 
   stage.querySelectorAll("[data-template-category]").forEach((button) => {
     button.addEventListener("click", () => {
