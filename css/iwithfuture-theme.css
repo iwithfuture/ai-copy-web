@@ -520,15 +520,19 @@ p {
 }
 
 .demo-inspired-home .hero-content {
-  max-width: 640px;
+  max-width: 620px;
+}
+
+.demo-inspired-home .hero p {
+  max-width: 560px;
 }
 
 .demo-stage {
   position: absolute;
-  right: max(4vw, 42px);
+  right: max(3vw, 28px);
   top: 50%;
   z-index: 3;
-  width: min(44vw, 610px);
+  width: min(41vw, 580px);
   transform: translateY(-47%);
 }
 
