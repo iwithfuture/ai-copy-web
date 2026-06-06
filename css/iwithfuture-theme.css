@@ -537,6 +537,10 @@ p {
   max-width: 620px;
 }
 
+.demo-inspired-home .hero .container.hero-content {
+  margin-left: calc((100vw - min(var(--max), calc(100vw - 40px))) / 2 + clamp(48px, 7vw, 150px));
+}
+
 .demo-inspired-home .hero p {
   max-width: 560px;
 }
@@ -825,6 +829,10 @@ p {
 }
 
 @media (max-width: 1080px) {
+  .demo-inspired-home .hero .container.hero-content {
+    margin-left: auto;
+  }
+
   .demo-stage {
     position: relative;
     right: auto;
