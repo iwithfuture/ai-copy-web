@@ -4,7 +4,7 @@ const path = require("path");
 const root = __dirname;
 const siteUrl = "https://ai.iwithfuture.com";
 const brand = "吾日三省吾身";
-const brandFull = "吾日三省吾身 Hanto Global";
+const brandFull = "吾日三省吾身";
 const defaultImage = `${siteUrl}/assets/hero-hanto-voyage.png`;
 const today = new Date().toISOString().slice(0, 10);
 

@@ -1,4 +1,4 @@
-# 吾日三省吾身 Hanto Global Static Site
+# 吾日三省吾身 Static Site
 
 这是一个复刻 `hantoglobal.com` 风格的静态网站项目，包含首页、服务页、营销页、AI 增长页、行业方案页、资源页、案例页、工具页和联系页。
 
