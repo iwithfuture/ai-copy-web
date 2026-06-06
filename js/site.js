@@ -217,17 +217,17 @@ function enhanceHomeLikeDemo() {
         <button type="button" data-template-category="energy">新能源</button>
         <button type="button" data-template-category="ecommerce">跨境电商</button>
       </div>
-      <div class="template-grid-mini">
-        <a href="https://demo.iwithfuture.com/" target="_blank" rel="noopener" class="template-card-mini">
-          <i></i><strong>机械设备官网 Demo</strong><span>适合设备工厂和出口制造商</span>
-        </a>
-        <a href="https://demo.iwithfuture.com/" target="_blank" rel="noopener" class="template-card-mini">
-          <i></i><strong>产品目录 + 询盘</strong><span>展示设备分类、参数和应用场景</span>
-        </a>
-        <a href="https://demo.iwithfuture.com/" target="_blank" rel="noopener" class="template-card-mini">
-          <i></i><strong>资料下载型页面</strong><span>承接规格书、案例和技术资料</span>
-        </a>
-      </div>
+        <div class="template-grid-mini">
+          <a href="https://demo.iwithfuture.com/" target="_blank" rel="noopener" class="template-card-mini">
+            <span class="template-thumb"><img src="assets/generated/b2b-u9a81i.svg" alt="机械设备官网 Demo"></span><strong>机械设备官网 Demo</strong><span>适合设备工厂和出口制造商</span>
+          </a>
+          <a href="https://demo.iwithfuture.com/" target="_blank" rel="noopener" class="template-card-mini">
+            <span class="template-thumb"><img src="assets/generated/wordpress-a16k1n.svg" alt="产品目录 + 询盘"></span><strong>产品目录 + 询盘</strong><span>展示设备分类、参数和应用场景</span>
+          </a>
+          <a href="https://demo.iwithfuture.com/" target="_blank" rel="noopener" class="template-card-mini">
+            <span class="template-thumb"><img src="assets/generated/b2b-seo-1579fz1.svg" alt="资料下载型页面"></span><strong>资料下载型页面</strong><span>承接规格书、案例和技术资料</span>
+          </a>
+        </div>
       <div class="template-metrics">
         <span><b>Learn</b> 博客学习</span>
         <span><b>Demo</b> 模板选型</span>
@@ -237,44 +237,44 @@ function enhanceHomeLikeDemo() {
   hero.appendChild(stage);
   const templateData = {
     machinery: [
-      ["机械设备官网 Demo", "适合设备工厂和出口制造商"],
-      ["产品目录 + 询盘", "展示设备分类、参数和应用场景"],
-      ["资料下载型页面", "承接规格书、案例和技术资料"],
+      ["机械设备官网 Demo", "适合设备工厂和出口制造商", "assets/generated/b2b-u9a81i.svg"],
+      ["产品目录 + 询盘", "展示设备分类、参数和应用场景", "assets/generated/wordpress-a16k1n.svg"],
+      ["资料下载型页面", "承接规格书、案例和技术资料", "assets/generated/b2b-seo-1579fz1.svg"],
     ],
     parts: [
-      ["工业零部件官网 Demo", "适合配件、五金和加工件供应商"],
-      ["参数筛选型目录", "突出型号、材质、规格和兼容性"],
-      ["B2B 询价型页面", "让采购商快速提交图纸和需求"],
+      ["工业零部件官网 Demo", "适合配件、五金和加工件供应商", "assets/generated/topic-1qn3463.svg"],
+      ["参数筛选型目录", "突出型号、材质、规格和兼容性", "assets/generated/topic-268knz.svg"],
+      ["B2B 询价型页面", "让采购商快速提交图纸和需求", "assets/generated/react-next-js-19j50pe.svg"],
     ],
     home: [
-      ["家居建材官网 Demo", "适合建材、家具和装饰材料品牌"],
-      ["项目案例型页面", "展示空间效果、安装场景和工程案例"],
-      ["产品系列目录", "适合颜色、尺寸、材质多的产品线"],
+      ["家居建材官网 Demo", "适合建材、家具和装饰材料品牌", "assets/generated/topic-107gy7u.svg"],
+      ["项目案例型页面", "展示空间效果、安装场景和工程案例", "assets/generated/topic-17yeneb.svg"],
+      ["产品系列目录", "适合颜色、尺寸、材质多的产品线", "assets/generated/topic-1ayvgak.svg"],
     ],
     electronics: [
-      ["电子电器官网 Demo", "适合电子产品、电器和智能硬件"],
-      ["技术规格页面", "展示认证、参数、应用和下载资料"],
-      ["经销商询盘入口", "承接批发、代理和 OEM/ODM 需求"],
+      ["电子电器官网 Demo", "适合电子产品、电器和智能硬件", "assets/generated/topic-1b6wnng.svg"],
+      ["技术规格页面", "展示认证、参数、应用和下载资料", "assets/generated/topic-1haall5.svg"],
+      ["经销商询盘入口", "承接批发、代理和 OEM/ODM 需求", "assets/generated/topic-1jhx4x0.svg"],
     ],
     beauty: [
-      ["美妆个护官网 Demo", "适合护肤、美妆、个护和 DTC 品牌"],
-      ["品牌故事页面", "突出视觉、功效、成分和用户信任"],
-      ["Shopify 转化入口", "适合后续接入商品、支付和复购"],
+      ["美妆个护官网 Demo", "适合护肤、美妆、个护和 DTC 品牌", "assets/generated/shopify-1abql9p.svg"],
+      ["品牌故事页面", "突出视觉、功效、成分和用户信任", "assets/generated/topic-1knxsus.svg"],
+      ["Shopify 转化入口", "适合后续接入商品、支付和复购", "assets/generated/shopify-9uvhjz.svg"],
     ],
     medical: [
-      ["医疗器械官网 Demo", "适合设备、耗材和医疗产品出口"],
-      ["认证资料页面", "突出 CE、FDA、说明书和技术文档"],
-      ["专业询盘路径", "适合经销商、医院和采购商咨询"],
+      ["医疗器械官网 Demo", "适合设备、耗材和医疗产品出口", "assets/generated/topic-1n0du95.svg"],
+      ["认证资料页面", "突出 CE、FDA、说明书和技术文档", "assets/generated/topic-1n9vfx9.svg"],
+      ["专业询盘路径", "适合经销商、医院和采购商咨询", "assets/generated/topic-1nfi29x.svg"],
     ],
     energy: [
-      ["新能源官网 Demo", "适合储能、光伏、电池和充电产品"],
-      ["解决方案页面", "按应用场景展示系统能力和参数"],
-      ["项目案例页面", "承接工程案例、下载资料和询盘"],
+      ["新能源官网 Demo", "适合储能、光伏、电池和充电产品", "assets/generated/topic-1oxkp79.svg"],
+      ["解决方案页面", "按应用场景展示系统能力和参数", "assets/generated/topic-1q9c3o6.svg"],
+      ["项目案例页面", "承接工程案例、下载资料和询盘", "assets/generated/topic-1sh0qz.svg"],
     ],
     ecommerce: [
-      ["跨境电商独立站 Demo", "适合 DTC 品牌和在线销售"],
-      ["产品转化页面", "突出卖点、评价、套装和再营销"],
-      ["Shopify 店铺入口", "适合支付、订单、库存和复购"],
+      ["跨境电商独立站 Demo", "适合 DTC 品牌和在线销售", "assets/generated/shopify-n7dv1l.svg"],
+      ["产品转化页面", "突出卖点、评价、套装和再营销", "assets/generated/cro-9hgfbk.svg"],
+      ["Shopify 店铺入口", "适合支付、订单、库存和复购", "assets/generated/google-ads-1v9uzj2.svg"],
     ],
   };
 
@@ -282,7 +282,7 @@ function enhanceHomeLikeDemo() {
     const cards = templateData[category] || templateData.machinery;
     const grid = stage.querySelector(".template-grid-mini");
     grid.innerHTML = cards
-      .map(([title, desc]) => `<a href="https://demo.iwithfuture.com/" target="_blank" rel="noopener" class="template-card-mini"><i></i><strong>${title}</strong><span>${desc}</span></a>`)
+      .map(([title, desc, image]) => `<a href="https://demo.iwithfuture.com/" target="_blank" rel="noopener" class="template-card-mini"><span class="template-thumb"><img src="${image}" alt="${title}"></span><strong>${title}</strong><span>${desc}</span></a>`)
       .join("");
   };
 
