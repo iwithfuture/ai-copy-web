@@ -332,7 +332,23 @@ p {
 }
 
 .mega-grid {
-  grid-template-columns: minmax(260px, .82fr) minmax(390px, 1.18fr);
+  grid-template-columns: minmax(420px, 1fr);
+}
+
+.mega:has(.mega-grid:not(:has(.mega-panel))) {
+  width: min(520px, calc(100vw - 40px));
+}
+
+.mega.mega-compact {
+  width: min(520px, calc(100vw - 40px));
+}
+
+.mega-grid:not(:has(.mega-panel)) .mega-col {
+  border-left: 0;
+}
+
+.mega.mega-compact .mega-col {
+  border-left: 0;
 }
 
 .mega-panel {

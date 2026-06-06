@@ -151,36 +151,10 @@ document.querySelectorAll(".tool-card").forEach((form) => {
 });
 
 function enhanceMegaMenus() {
-  const configs = [
-    {
-      tags: ["WordPress", "Shopify", "AI 官网"],
-      title: "先选建站方式，再定页面结构",
-      text: "B2B 内容沉淀优先 WordPress，在线交易优先 Shopify，轻量展示可以先做 AI 官网。",
-    },
-    {
-      tags: ["SEO", "Google Ads", "社媒"],
-      title: "把流量接进同一套转化路径",
-      text: "关键词、广告素材、落地页和询盘入口一起规划，减少只做单点优化的浪费。",
-    },
-    {
-      tags: ["博客", "知识库", "教程"],
-      title: "内容资产沉淀到长期入口",
-      text: "把教程、FAQ、产品场景和运营复盘做成可搜索、可转发、可持续更新的内容库。",
-    },
-  ];
-
-  document.querySelectorAll(".mega").forEach((mega, index) => {
+  document.querySelectorAll(".mega").forEach((mega) => {
     const panel = mega.querySelector(".mega-panel");
-    if (!panel || panel.querySelector(".mega-preview")) return;
-    const config = configs[index] || configs[0];
-    const badges = document.createElement("div");
-    badges.className = "mega-badges";
-    badges.innerHTML = config.tags.map((tag) => `<span>${tag}</span>`).join("");
-    const preview = document.createElement("div");
-    preview.className = "mega-preview";
-    preview.innerHTML = `<strong>${config.title}</strong><p>${config.text}</p>`;
-    panel.appendChild(badges);
-    panel.appendChild(preview);
+    if (panel) panel.remove();
+    mega.classList.add("mega-compact");
   });
 }
 
