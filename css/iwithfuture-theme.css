@@ -1,0 +1,505 @@
+/* iwithfuture brand-unified theme */
+:root {
+  --navy: #192a3d;
+  --navy2: #3A4F66;
+  --text: #192a3d;
+  --muted: #5f7184;
+  --line: rgba(25, 42, 61, .12);
+  --soft: #f2f5f7;
+  --blue: #2872fa;
+  --ice: #6EC1E4;
+  --white: #fff;
+  --shadow: 0 16px 42px rgba(25, 42, 61, .08);
+  --radius: 8px;
+  --max: 1180px;
+  --font: Roboto, "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif;
+}
+
+body {
+  background: #FAFBFC;
+  color: var(--text);
+  font-family: var(--font);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--navy);
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+p {
+  color: var(--muted);
+}
+
+.site-header,
+.site-header.scrolled {
+  background: rgba(255, 255, 255, .97);
+  border-bottom: 1px solid #e1e8ed;
+  box-shadow: 0 8px 26px rgba(25, 42, 61, .045);
+  backdrop-filter: blur(18px);
+}
+
+.nav-inner,
+.nav-trigger {
+  height: 76px;
+}
+
+.brand,
+.nav-links,
+.nav-actions,
+.nav-trigger,
+.ghost-link {
+  color: var(--navy);
+}
+
+.brand-name strong {
+  color: var(--navy);
+  font-weight: 900;
+}
+
+.brand-name span {
+  color: #7c8c9d;
+}
+
+.nav-trigger {
+  font-weight: 720;
+}
+
+.nav-trigger:hover,
+.ghost-link:hover,
+.mega-link:hover,
+.site-footer a:hover {
+  color: var(--blue);
+}
+
+.mobile-toggle {
+  background: #fff;
+  color: var(--navy);
+  border-color: #d8e2eb;
+}
+
+.btn {
+  border-radius: 8px;
+  font-weight: 800;
+}
+
+.btn-primary {
+  background: #2872fa;
+  border-color: #2872fa;
+  color: #fff;
+  box-shadow: 0 16px 30px rgba(40, 114, 250, .2);
+}
+
+.btn-primary:hover {
+  background: #1559ed;
+  border-color: #1559ed;
+}
+
+.btn-dark {
+  background: #192a3d;
+  border-color: #192a3d;
+  color: #fff;
+}
+
+.btn-outline-dark {
+  background: #fff;
+  color: #192a3d;
+  border-color: #d8e2eb;
+}
+
+.btn-outline-dark:hover {
+  color: #2872fa;
+  border-color: rgba(40, 114, 250, .38);
+  background: #fff;
+}
+
+.hero,
+.inner-hero,
+.content-hero {
+  background: #FAFBFC;
+}
+
+.hero {
+  min-height: 92vh;
+}
+
+.hero-bg,
+.inner-hero-bg {
+  opacity: 1;
+  transform: none;
+  background:
+    radial-gradient(circle at 84% 23%, rgba(110, 193, 228, .26), transparent 24%),
+    radial-gradient(circle at 96% 76%, rgba(40, 114, 250, .13), transparent 30%),
+    linear-gradient(100deg, #FAFBFC 0%, #FAFBFC 52%, #f2f5f7 100%),
+    url("https://iwithfuture.com/wp-content/uploads/2024/10/decorative.svg") right 6% center / 42% auto no-repeat;
+}
+
+.hero::before,
+.inner-hero::before {
+  background-image:
+    linear-gradient(rgba(25, 42, 61, .035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(25, 42, 61, .035) 1px, transparent 1px);
+  background-size: 58px 58px;
+  mask-image: linear-gradient(90deg, rgba(0, 0, 0, .22), transparent 70%);
+}
+
+.hero::after {
+  height: 90px;
+  background: linear-gradient(0deg, #fff, rgba(255, 255, 255, 0));
+}
+
+.hero-content {
+  max-width: 720px;
+  min-height: 92vh;
+  padding-top: 126px;
+}
+
+.hero h1,
+.inner-hero h1 {
+  color: #192a3d;
+  font-size: clamp(42px, 5.4vw, 72px);
+  line-height: 1.08;
+}
+
+.hero p,
+.inner-hero p {
+  color: #3A4F66;
+  font-size: 19px;
+  line-height: 1.78;
+}
+
+.eyebrow,
+.section-kicker {
+  color: #2872fa;
+  letter-spacing: .045em;
+}
+
+.eyebrow::before,
+.section-kicker::before {
+  width: 22px;
+  height: 2px;
+}
+
+.breadcrumbs {
+  color: #6f8193;
+}
+
+.hero-actions {
+  gap: 12px;
+}
+
+.hero-metrics {
+  gap: 16px;
+}
+
+.metric,
+.hero-panel,
+.card,
+.resource-card,
+.step,
+.tab-btn,
+.tab-panel,
+.panel-cell,
+.directory-group,
+.contact-info-list a,
+.contact-form,
+.tool-card,
+.price-card,
+.plugin-card,
+.learning-link-card,
+.strategy-card,
+.ecosystem-card,
+.faq-item {
+  background: #fff;
+  border: 1px solid #e1e8ed;
+  box-shadow: 0 12px 30px rgba(25, 42, 61, .055);
+}
+
+.metric b,
+.hero-panel h4,
+.feature-item b,
+.faq-q {
+  color: #192a3d;
+}
+
+.metric span,
+.hero-panel li,
+.feature-item span {
+  color: #5f7184;
+}
+
+.hero-panel li::before {
+  background: #2872fa;
+}
+
+.scroll-cue {
+  color: #6f8193;
+}
+
+.section {
+  padding: 100px 0;
+}
+
+.section-soft,
+.learning-bridge {
+  background: #f2f5f7;
+}
+
+.section-dark {
+  background: #192a3d;
+}
+
+.section-head {
+  align-items: start;
+}
+
+.section-head p {
+  font-size: 17px;
+}
+
+.split {
+  gap: 64px;
+}
+
+.visual-card {
+  background: #fff;
+  border: 1px solid #e1e8ed;
+  box-shadow: 0 18px 44px rgba(25, 42, 61, .08);
+}
+
+.visual-card img {
+  object-fit: contain;
+  background: #fff;
+  padding: 18px;
+}
+
+.card,
+.resource-card,
+.step,
+.price-card,
+.plugin-card,
+.learning-link-card,
+.strategy-card,
+.ecosystem-card {
+  border-radius: 8px;
+}
+
+.card:hover,
+.resource-card:hover,
+.learning-link-card:hover,
+.ecosystem-card:hover,
+.post-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(40, 114, 250, .28);
+  box-shadow: 0 20px 46px rgba(40, 114, 250, .1);
+}
+
+.icon,
+.feature-item i,
+.strategy-card i,
+.mega-link i,
+.plugin-mark {
+  background: rgba(40, 114, 250, .1);
+  color: #2872fa;
+}
+
+.feature-item {
+  border-bottom-color: #e1e8ed;
+}
+
+.mega {
+  top: 76px;
+  background: #fff;
+  border: 1px solid #e1e8ed;
+  box-shadow: 0 18px 48px rgba(25, 42, 61, .12);
+}
+
+.mega-grid {
+  grid-template-columns: minmax(260px, .82fr) minmax(390px, 1.18fr);
+}
+
+.mega-panel {
+  background: linear-gradient(180deg, #f2f5f7, #fff);
+  color: #192a3d;
+  border-right: 1px solid #e1e8ed;
+}
+
+.mega-panel strong,
+.mini-stat b {
+  color: #192a3d;
+}
+
+.mega-panel p,
+.mini-stat span,
+.mega-link small {
+  color: #5f7184;
+}
+
+.mega-link b,
+.resource-card small,
+.post-card span,
+.learning-link-card small,
+.price-card small,
+.ecosystem-card small {
+  color: #2872fa;
+}
+
+.marquee {
+  background: #fff;
+  border-top: 1px solid #e1e8ed;
+  border-bottom: 1px solid #e1e8ed;
+}
+
+.marquee span {
+  color: #3A4F66;
+}
+
+.tabs {
+  gap: 30px;
+}
+
+.tab-btn.active {
+  border-color: rgba(40, 114, 250, .32);
+  box-shadow: 0 18px 38px rgba(40, 114, 250, .11);
+}
+
+.panel-cell,
+.pricing-grid-four .price-card,
+.ecosystem-card,
+.contact-form,
+.tool-card {
+  background: linear-gradient(180deg, #fff, #fbfdff);
+}
+
+.price-card-featured {
+  border-color: rgba(40, 114, 250, .34);
+  box-shadow: 0 22px 54px rgba(40, 114, 250, .12);
+}
+
+.pricing-note {
+  border-color: rgba(40, 114, 250, .18);
+  background: linear-gradient(180deg, #fff, #eef6ff);
+}
+
+.site-ecosystem {
+  background: #fff;
+}
+
+.ecosystem-card-primary {
+  background: linear-gradient(135deg, #2872fa, #1559ed);
+  border-color: transparent;
+}
+
+.ecosystem-card-primary h3,
+.ecosystem-card-primary b,
+.cta h2 {
+  color: #fff;
+}
+
+.ecosystem-card-primary p,
+.cta p {
+  color: rgba(255, 255, 255, .88);
+}
+
+.cta {
+  background: linear-gradient(135deg, #2872fa, #1559ed);
+  padding: 82px 0;
+}
+
+.cta::after {
+  display: none;
+}
+
+.site-footer {
+  background: #fff;
+  color: #5f7184;
+  border-top: 1px solid #e1e8ed;
+}
+
+.site-footer h6,
+.site-footer .brand-name strong {
+  color: #192a3d;
+}
+
+.site-footer a,
+.site-footer p {
+  color: #5f7184;
+}
+
+.footer-bottom {
+  border-top: 1px solid #e1e8ed;
+  color: #7c8c9d;
+}
+
+.float-tools a,
+.float-tools button {
+  background: #fff;
+  color: #192a3d;
+  border-color: #d8e2eb;
+  box-shadow: 0 12px 28px rgba(25, 42, 61, .12);
+}
+
+.float-tools .wechat-float {
+  background: #07c160;
+  color: #fff;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea,
+.tool-card input {
+  border-color: #d8e2eb;
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+  border-color: #2872fa;
+  box-shadow: 0 0 0 4px rgba(40, 114, 250, .12);
+}
+
+@media (max-width: 1080px) {
+  .mobile-menu {
+    background: rgba(255, 255, 255, .98);
+    border-top: 1px solid #e1e8ed;
+  }
+
+  .mobile-menu a {
+    color: #192a3d;
+    border-bottom: 1px solid #e1e8ed;
+  }
+
+  .hero-bg,
+  .inner-hero-bg {
+    background:
+      radial-gradient(circle at 92% 12%, rgba(110, 193, 228, .22), transparent 28%),
+      linear-gradient(180deg, #FAFBFC, #f2f5f7);
+  }
+}
+
+@media (max-width: 680px) {
+  .hero {
+    min-height: auto;
+  }
+
+  .hero-content {
+    min-height: auto;
+  }
+
+  .hero h1,
+  .inner-hero h1 {
+    font-size: 34px;
+  }
+
+  .hero p,
+  .inner-hero p {
+    font-size: 17px;
+  }
+
+  .section {
+    padding: 76px 0;
+  }
+}
