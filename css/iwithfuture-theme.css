@@ -56,7 +56,7 @@ p {
 }
 
 .brand-name strong {
-  color: var(--navy);
+  color: var(--blue);
   font-weight: 900;
 }
 
