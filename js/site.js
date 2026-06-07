@@ -655,6 +655,31 @@ function enhanceIndustrySolutionPages() {
       </ul>`;
   }
 
+  const growthSection = Array.from(document.querySelectorAll(".section")).find((section) => {
+    const kicker = section.querySelector(".section-kicker");
+    return kicker && kicker.textContent.trim().toLowerCase() === "growth system";
+  });
+  if (growthSection) {
+    const title = growthSection.querySelector(".section-head h2");
+    const intro = growthSection.querySelector(".section-head p");
+    const cards = growthSection.querySelectorAll(".card");
+    if (title) title.textContent = `${data.title}不是简单换模板，而是把客户决策路径做清楚。`;
+    if (intro) intro.textContent = `${data.outcome} 页面内容会围绕买家真正关心的问题展开，让客户先理解、再比较、最后愿意提交需求。`;
+    const cardContent = [
+      [`${data.title}定位`, `${data.fit[0]}；${data.fit[1]}。先把适合的客户和采购场景讲清楚，页面才不会变成泛泛展示。`],
+      ["核心页面结构", `${data.structure[0]}；${data.structure[1]}。先让客户找到信息，再引导他进入询盘或下载资料。`],
+      ["询盘与内容增长", `${data.conversion[0]}，同时围绕 ${data.seo[0]} 扩展内容，让页面既能转化，也能长期沉淀搜索流量。`],
+    ];
+    cards.forEach((card, index) => {
+      const item = cardContent[index];
+      if (!item) return;
+      const cardTitle = card.querySelector("h3");
+      const cardText = card.querySelector("p");
+      if (cardTitle) cardTitle.textContent = item[0];
+      if (cardText) cardText.textContent = item[1];
+    });
+  }
+
   const list = (items) => items.map((item) => `<li>${item}</li>`).join("");
   const demos = data.demos.map(([title, desc, img, href]) => `
     <a class="industry-demo-card" href="${href}" target="_blank" rel="noopener">
