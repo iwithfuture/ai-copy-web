@@ -680,6 +680,30 @@ function enhanceIndustrySolutionPages() {
     });
   }
 
+  const executionSection = Array.from(document.querySelectorAll(".section")).find((section) => {
+    const kicker = section.querySelector(".section-kicker");
+    return kicker && kicker.textContent.trim().toLowerCase() === "execution map";
+  });
+  if (executionSection) {
+    const title = executionSection.querySelector("h2");
+    if (title) title.textContent = `${data.title}落地时，先把这四件事做扎实。`;
+    const items = executionSection.querySelectorAll(".process-item");
+    const executionItems = [
+      ["买家需求与场景拆解", `${data.fit[0]}，所以第一步要先确认目标客户、采购场景和主要决策顾虑。`],
+      ["栏目结构与资料准备", `${data.structure[0]}；${data.structure[1]}。这些内容决定网站是否能让客户快速看懂。`],
+      ["询盘入口与信任设计", `${data.conversion[0]}；${data.conversion[1]}。让客户在比较产品、查看资料和准备咨询时都有明确下一步。`],
+      ["SEO 内容与数据复盘", `${data.seo[0]} 是起点，上线后再根据访问、转化和询盘数据调整页面与内容方向。`],
+    ];
+    items.forEach((item, index) => {
+      const content = executionItems[index];
+      if (!content) return;
+      const itemTitle = item.querySelector("h3");
+      const itemText = item.querySelector("p");
+      if (itemTitle) itemTitle.textContent = content[0];
+      if (itemText) itemText.textContent = content[1];
+    });
+  }
+
   const list = (items) => items.map((item) => `<li>${item}</li>`).join("");
   const demos = data.demos.map(([title, desc, img, href]) => `
     <a class="industry-demo-card" href="${href}" target="_blank" rel="noopener">
