@@ -478,6 +478,134 @@ function enhanceLicensedTrustBlocks() {
   });
 }
 
+function enhanceCustomerFacingTemplates() {
+  const slug = location.pathname.split("/").pop() || "index.html";
+  if (slug === "index.html" || slug === "") return;
+
+  const dataBySlug = {
+    "ai-website.html": ["AI 官网展示建站", "适合先把品牌、服务和联系方式快速上线，用轻量页面承接客户搜索、名片和社媒访问。", "轻量展示", "快速上线", "后续可升级"],
+    "wordpress-website.html": ["WordPress 外贸建站", "适合 B2B 工厂、服务企业和内容沉淀型网站，把产品目录、资料下载、FAQ 和 SEO 内容长期维护起来。", "长期运营", "内容沉淀", "可维护后台"],
+    "shopify-website.html": ["Shopify 独立站建设", "适合需要在线销售、支付、订单和复购的 DTC 品牌，把商品页、广告落地页和再营销连成转化路径。", "在线交易", "商品转化", "复购运营"],
+    "custom-development.html": ["定制开发建站", "适合对性能、交互、后台和业务流程有明确要求的项目，用定制结构解决模板无法承接的问题。", "定制功能", "高性能", "可扩展"],
+    "multilingual-website.html": ["多语言外贸网站", "适合需要英语、小语种和不同国家市场页面的企业，让不同地区客户看到本地化内容和清晰询盘入口。", "多市场", "本地化", "hreflang"],
+    "landing-pages.html": ["广告落地页设计", "适合 Google Ads、Facebook Ads 和活动投放，把单一产品或服务的卖点、信任和转化动作压缩到一页里。", "广告转化", "快速测试", "线索收集"],
+    "speed-security.html": ["网站速度与安全优化", "适合已经上线但加载慢、后台不稳或安全风险较高的网站，先保证客户能顺畅访问，再谈转化。", "速度体验", "安全维护", "稳定访问"],
+    "website-maintenance.html": ["网站维护与增长托管", "适合网站已经上线但缺少持续更新、备份、数据复盘和内容优化的企业，让网站保持可用、可改、可增长。", "持续维护", "月度复盘", "内容更新"],
+    "seo.html": ["Google SEO 优化", "适合希望用自然搜索持续获得询盘的外贸企业，从关键词、技术、内容和外链四个方向提升可见度。", "自然流量", "关键词布局", "内容资产"],
+    "technical-seo.html": ["技术 SEO", "适合网站收录差、速度慢、结构混乱或页面体验不足的情况，先让搜索引擎能正确抓取和理解网站。", "索引抓取", "速度体验", "结构化数据"],
+    "content-seo.html": ["内容 SEO", "适合想用文章、指南、FAQ 和对比页承接买家问题的企业，把内容做成可搜索的询盘入口。", "买家问题", "内容集群", "长期排名"],
+    "link-building.html": ["外链与品牌曝光", "适合已经有基础内容和产品页的网站，通过高质量曝光、品牌提及和行业内容提升信任。", "品牌信任", "外链质量", "行业曝光"],
+    "google-sem.html": ["Google SEM 投放", "适合需要更快获取询盘的企业，用关键词、广告组、落地页和转化追踪控制预算效率。", "关键词广告", "落地页", "转化追踪"],
+    "google-ads-landing.html": ["Google Ads 落地页", "适合广告点击成本较高、转化不稳定的账户，把用户点击后的页面说服力做扎实。", "广告承接", "页面说服", "表单转化"],
+    "facebook-ads.html": ["Facebook / Instagram 投流", "适合用视觉素材、兴趣人群和再营销获客的品牌或产品，用素材测试找到可放大的组合。", "素材测试", "像素事件", "再营销"],
+    "social-media.html": ["全渠道社媒运营", "适合希望在 LinkedIn、YouTube、Facebook 和 Instagram 持续建立信任的外贸企业。", "内容节奏", "品牌露出", "线索回流"],
+    "linkedin-operation.html": ["LinkedIn 社媒运营", "适合 B2B 企业接触采购、老板、工程师和渠道商，用专业内容建立长期信任。", "B2B 决策人", "专业内容", "私域跟进"],
+    "youtube-operation.html": ["YouTube 内容运营", "适合产品需要演示、安装、案例或教程的企业，用视频降低客户理解成本。", "视频演示", "搜索曝光", "信任建立"],
+    "email-marketing.html": ["EDM 邮件营销", "适合已有询盘、展会名片或下载线索的企业，用邮件分层跟进和再激活。", "线索培育", "客户分层", "持续跟进"],
+    "conversion-optimization.html": ["转化率优化 CRO", "适合有访问但询盘少的网站，逐步优化首屏、信任、表单、按钮和落地页路径。", "询盘质量", "页面测试", "转化提升"],
+    "blog.html": ["博客中心", "适合把外贸建站、SEO、广告和运营经验整理成可持续访问的内容入口。", "教程内容", "经验沉淀", "搜索入口"],
+    "knowledge-base.html": ["外贸建站知识库", "适合系统查看建站、SEO、广告、社媒和内容运营方法，帮助客户先判断方向。", "系统学习", "方案判断", "长期更新"],
+    "q-and-a.html": ["问答中心", "适合把客户常问问题做成清晰答案，减少沟通成本，也增加搜索覆盖。", "常见问题", "快速理解", "搜索覆盖"],
+    "video-tutorials.html": ["视频教程中心", "适合通过视频理解建站、工具和运营流程，把复杂步骤变得更容易执行。", "视频教程", "工具演示", "步骤拆解"],
+    "downloads.html": ["资源下载中心", "适合下载建站清单、资料模板和运营表格，把准备工作提前做清楚。", "资料清单", "模板下载", "准备更快"],
+    "webinars.html": ["公开课与直播", "适合集中讲清外贸建站、SEO 和运营主题，帮助客户在咨询前先建立判断标准。", "主题直播", "实操分享", "答疑交流"],
+    "blog-wordpress.html": ["WordPress 建站教程", "适合想了解 WordPress 外贸网站结构、主题、插件和后期维护逻辑的客户。", "WordPress", "网站结构", "后期维护"],
+    "blog-shopify.html": ["Shopify 独立站教程", "适合想了解 Shopify 商品页、支付、应用、广告承接和复购运营的客户。", "Shopify", "商品页", "复购运营"],
+    "blog-seo.html": ["Google SEO 教程", "适合想理解关键词、技术 SEO、内容 SEO 和外链策略如何配合的客户。", "SEO 教程", "关键词", "内容策略"],
+    "blog-ads.html": ["广告投放教程", "适合想了解 Google Ads、Facebook Ads、落地页和转化追踪关系的客户。", "广告投放", "落地页", "转化追踪"],
+    "blog-ai-tools.html": ["AI 外贸工具教程", "适合想用 AI 提升建站、内容、客服和运营效率的客户。", "AI 工具", "内容效率", "运营辅助"],
+    "process.html": ["服务流程", "适合想在合作前了解沟通、报价、资料准备、设计开发、上线和维护边界的客户。", "合作步骤", "交付边界", "上线维护"],
+    "pricing.html": ["价格方案", "适合先了解最低套餐价格和加价边界，再根据页面数量、功能、资料和运营要求确认报价。", "最低价格", "加价边界", "按需报价"],
+    "about.html": ["关于吾日三省吾身", "适合了解我为什么做外贸建站、如何看待网站运营，以及能提供哪些长期支持。", "建站经验", "长期运营", "可信合作"],
+    "contact.html": ["咨询建站方案", "适合把行业、预算、参考网站和当前问题一次说清楚，我会先帮你判断更适合哪种建站方式。", "需求判断", "方案建议", "邮件沟通"]
+  };
+
+  const h1 = document.querySelector("h1");
+  const fallbackTitle = h1 ? h1.textContent.trim() : "这个页面";
+  const data = dataBySlug[slug] || [fallbackTitle, "这个页面会帮你判断当前方案是否适合自己的业务，并把下一步需要准备的资料讲清楚。", "业务判断", "页面结构", "咨询转化"];
+  const [titleText, summary, tagA, tagB, tagC] = data;
+  document.body.classList.add("customer-facing-page");
+
+  const heroPanel = document.querySelector(".inner-hero .hero-panel");
+  if (heroPanel && !document.body.classList.contains("industry-page-enhanced")) {
+    heroPanel.innerHTML = `
+      <h4>客户能先判断什么</h4>
+      <ul>
+        <li>${tagA}是否符合当前阶段</li>
+        <li>${tagB}需要准备哪些资料</li>
+        <li>${tagC}如何连接询盘或成交</li>
+        <li>是否值得进一步咨询方案</li>
+      </ul>`;
+  }
+
+  const growthSection = Array.from(document.querySelectorAll(".section")).find((section) => {
+    const kicker = section.querySelector(".section-kicker");
+    return kicker && kicker.textContent.trim().toLowerCase() === "growth system";
+  });
+  if (growthSection && !document.body.classList.contains("industry-page-enhanced")) {
+    const title = growthSection.querySelector(".section-head h2");
+    const intro = growthSection.querySelector(".section-head p");
+    const cards = growthSection.querySelectorAll(".card");
+    if (title) title.textContent = `${titleText}要先解决客户为什么继续看下去。`;
+    if (intro) intro.textContent = summary;
+    const cardContent = [
+      ["先判断是否适合", `把${tagA}、目标客户和当前阶段讲清楚，让客户先知道这个方案是不是为自己准备的。`],
+      ["再整理页面信息", `围绕${tagB}组织标题、栏目、证明材料和常见问题，减少客户来回确认基础信息。`],
+      ["最后引导下一步", `把${tagC}、联系入口和后续动作放到合适位置，让客户知道该怎么继续沟通。`],
+    ];
+    cards.forEach((card, index) => {
+      const item = cardContent[index];
+      if (!item) return;
+      const cardTitle = card.querySelector("h3");
+      const cardText = card.querySelector("p");
+      if (cardTitle) cardTitle.textContent = item[0];
+      if (cardText) cardText.textContent = item[1];
+    });
+  }
+
+  const executionSection = Array.from(document.querySelectorAll(".section")).find((section) => {
+    const kicker = section.querySelector(".section-kicker");
+    return kicker && kicker.textContent.trim().toLowerCase() === "execution map";
+  });
+  if (executionSection && !document.body.classList.contains("industry-page-enhanced")) {
+    const heading = executionSection.querySelector("h2");
+    if (heading) heading.textContent = `${titleText}落地时，按这四步推进。`;
+    const items = executionSection.querySelectorAll(".feature-item, .process-item");
+    const steps = [
+      ["确认目标与边界", `先确认你的行业、目标市场、预算和当前资料，避免一开始就做成不适合客户的页面。`],
+      ["整理内容与结构", `把${tagA}、${tagB}和客户常问问题整理成页面结构，保证客户能快速找到重点。`],
+      ["设置转化入口", `根据${tagC}设计按钮、表单、邮箱、下载或咨询入口，让访问者有明确下一步。`],
+      ["上线后复盘优化", "根据访问、点击、询盘和搜索数据，持续调整页面内容、CTA 和后续运营重点。"],
+    ];
+    items.forEach((item, index) => {
+      const step = steps[index];
+      if (!step) return;
+      const itemTitle = item.querySelector("b, h3");
+      const itemText = item.querySelector("span, p");
+      if (itemTitle) itemTitle.textContent = step[0];
+      if (itemText) itemText.textContent = step[1];
+    });
+  }
+
+  document.querySelectorAll(".section-head").forEach((head) => {
+    const kicker = head.querySelector(".section-kicker");
+    const title = head.querySelector("h2");
+    const intro = head.querySelector("p");
+    if (!kicker || !title) return;
+    if (kicker.textContent.trim().toLowerCase() === "related" && title.textContent.includes("你可能还需要")) {
+      title.textContent = "继续查看这些相关内容，帮你把方案判断完整。";
+      if (intro) intro.textContent = "如果你还不确定该先做网站、SEO、广告还是社媒，可以从这些页面继续对照自己的阶段和预算。";
+    }
+  });
+
+  document.querySelectorAll(".cta").forEach((cta) => {
+    const ctaTitle = cta.querySelector("h2");
+    const ctaText = cta.querySelector("p");
+    if (ctaTitle && ctaTitle.textContent.includes("先做一次网站增长诊断")) ctaTitle.textContent = "把你的行业、预算和参考网站发来，先判断方向。";
+    if (ctaText && ctaText.textContent.includes("告诉我们你的网站")) ctaText.textContent = "不用一开始就准备完整需求。先说清你的产品、目标市场、预算范围和想参考的网站，我会帮你判断更适合哪种页面结构和建站方式。";
+  });
+}
+
 function enhanceIndustrySolutionPages() {
   const slug = location.pathname.split("/").pop();
   const pages = {
@@ -687,7 +815,7 @@ function enhanceIndustrySolutionPages() {
   if (executionSection) {
     const title = executionSection.querySelector("h2");
     if (title) title.textContent = `${data.title}落地时，先把这四件事做扎实。`;
-    const items = executionSection.querySelectorAll(".process-item");
+    const items = executionSection.querySelectorAll(".feature-item, .process-item");
     const executionItems = [
       ["买家需求与场景拆解", `${data.fit[0]}，所以第一步要先确认目标客户、采购场景和主要决策顾虑。`],
       ["栏目结构与资料准备", `${data.structure[0]}；${data.structure[1]}。这些内容决定网站是否能让客户快速看懂。`],
@@ -697,8 +825,8 @@ function enhanceIndustrySolutionPages() {
     items.forEach((item, index) => {
       const content = executionItems[index];
       if (!content) return;
-      const itemTitle = item.querySelector("h3");
-      const itemText = item.querySelector("p");
+      const itemTitle = item.querySelector("b, h3");
+      const itemText = item.querySelector("span, p");
       if (itemTitle) itemTitle.textContent = content[0];
       if (itemText) itemText.textContent = content[1];
     });
@@ -767,4 +895,5 @@ enhanceHomeDecisionGuide();
 enhanceServiceConversionBlocks();
 enhanceLicensedTrustBlocks();
 enhanceContactFinder();
+enhanceCustomerFacingTemplates();
 enhanceIndustrySolutionPages();
