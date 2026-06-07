@@ -348,6 +348,139 @@ function enhanceContactFinder() {
   finder.querySelectorAll(".reveal").forEach((el) => setTimeout(() => el.classList.add("visible"), 80));
 }
 
+function enhanceHomeDecisionGuide() {
+  const isHome = /\/(?:index\.html)?$/.test(location.pathname) || location.pathname.endsWith("/AI/");
+  if (!isHome || document.querySelector(".home-decision-guide")) return;
+  const target = document.querySelector(".ecosystem-strip") || document.querySelector(".hero");
+  if (!target) return;
+
+  const section = document.createElement("section");
+  section.className = "section home-decision-guide";
+  section.innerHTML = `
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <span class="section-kicker">Choose Your Build</span>
+          <h2>先判断建站方式，再决定页面结构。</h2>
+        </div>
+        <p>不用一开始就纠结技术名词。先看你的目标是展示、沉淀内容，还是在线交易，再选择 AI 官网、WordPress 或 Shopify。</p>
+      </div>
+      <div class="decision-grid">
+        <a class="decision-card reveal" href="pages/ai-website.html">
+          <small>¥2,000 起</small>
+          <h3>AI 官网展示建站</h3>
+          <p>适合个人、SOHO、小型企业快速上线品牌展示页，先验证方向，不做复杂系统。</p>
+          <span>快速上线 / 轻量展示 / 预算友好</span>
+        </a>
+        <a class="decision-card reveal featured" href="pages/wordpress-website.html">
+          <small>推荐长期运营</small>
+          <h3>WordPress 外贸建站</h3>
+          <p>适合 B2B 工厂、工业品、服务企业，把产品目录、技术资料、FAQ 和 SEO 内容长期沉淀。</p>
+          <span>内容运营 / SEO 增长 / 后台可维护</span>
+        </a>
+        <a class="decision-card reveal" href="pages/shopify-website.html">
+          <small>电商交易型</small>
+          <h3>Shopify 独立站</h3>
+          <p>适合 DTC 品牌和跨境电商，重点处理商品、支付、订单、评价和再营销。</p>
+          <span>在线交易 / 商品管理 / 复购转化</span>
+        </a>
+      </div>
+    </div>`;
+  target.insertAdjacentElement("afterend", section);
+  section.querySelectorAll(".reveal").forEach((el) => {
+    revealObserver.observe(el);
+    setTimeout(() => el.classList.add("visible"), 80);
+  });
+}
+
+function enhanceServiceConversionBlocks() {
+  const slug = location.pathname.split("/").pop();
+  const serviceMap = {
+    "ai-website.html": {
+      name: "AI 官网展示建站",
+      fit: "想快速上线展示型官网、预算控制在起步阶段、资料还需要边做边整理。",
+      notFit: "需要复杂后台、多语言内容矩阵、长期 SEO 内容运营或在线交易系统。",
+      deliver: "首页、公司介绍、服务/产品展示、案例或优势模块、联系方式、基础移动端适配。",
+      prepare: "行业、参考网站、公司介绍、核心服务、联系方式、预算和上线时间。"
+    },
+    "wordpress-website.html": {
+      name: "WordPress 外贸建站",
+      fit: "B2B 工厂、设备、零部件、服务企业，需要产品目录、资料下载、FAQ、博客和长期 SEO。",
+      notFit: "核心目标是在线下单、支付、库存、订单管理和电商复购。",
+      deliver: "网站结构规划、页面设计、WordPress 后台、产品/内容栏目、询盘入口、基础 SEO。",
+      prepare: "产品分类、核心产品、目标市场、参考 Demo、现有资料、是否需要多语言。"
+    },
+    "shopify-website.html": {
+      name: "Shopify 独立站",
+      fit: "DTC 品牌、跨境电商、需要商品页、支付、订单、评价、优惠和再营销。",
+      notFit: "只做 B2B 目录展示、长篇内容 SEO 或资料型官网时，WordPress 通常更合适。",
+      deliver: "店铺结构、首页、商品页、集合页、购物流程、基础追踪和转化模块。",
+      prepare: "商品数量、SKU、支付方式、物流区域、参考店铺、品牌素材和运营计划。"
+    }
+  };
+  const data = serviceMap[slug];
+  if (!data || document.querySelector(".service-conversion-block")) return;
+  const hero = document.querySelector(".inner-hero");
+  if (!hero) return;
+
+  const section = document.createElement("section");
+  section.className = "section service-conversion-block";
+  section.innerHTML = `
+    <div class="container service-conversion-shell">
+      <div class="service-conversion-head reveal">
+        <span class="section-kicker">Decision Snapshot</span>
+        <h2>${data.name}，先看这四点再决定。</h2>
+        <p>这部分是为了让客户更快判断自己是否适合这个方案，也方便咨询时一次性说清楚需求。</p>
+      </div>
+      <div class="service-conversion-grid">
+        <article class="conversion-card reveal"><small>适合谁</small><h3>适合选择</h3><p>${data.fit}</p></article>
+        <article class="conversion-card reveal"><small>不适合谁</small><h3>暂时不要选</h3><p>${data.notFit}</p></article>
+        <article class="conversion-card reveal"><small>交付内容</small><h3>会交付什么</h3><p>${data.deliver}</p></article>
+        <article class="conversion-card reveal"><small>咨询资料</small><h3>你需要准备</h3><p>${data.prepare}</p></article>
+      </div>
+      <div class="service-conversion-cta reveal">
+        <span>不确定该选哪一种？把行业、产品数量、参考网站和预算发来，我可以先帮你判断方向。</span>
+        <a class="btn btn-primary magnetic" href="contact.html">咨询建站方案</a>
+      </div>
+    </div>`;
+  hero.insertAdjacentElement("afterend", section);
+  section.querySelectorAll(".reveal").forEach((el) => {
+    revealObserver.observe(el);
+    setTimeout(() => el.classList.add("visible"), 80);
+  });
+}
+
+function enhanceLicensedTrustBlocks() {
+  const slug = location.pathname.split("/").pop();
+  if (!["wordpress-website.html", "pricing.html", "about.html"].includes(slug) || document.querySelector(".license-trust-panel")) return;
+  const anchor = document.querySelector(".licensed-plugins") || document.querySelector(".licensed-assurance") || document.querySelector(".inner-hero");
+  if (!anchor) return;
+
+  const section = document.createElement("section");
+  section.className = "section section-soft license-trust-panel";
+  section.innerHTML = `
+    <div class="container trust-panel-shell">
+      <div class="trust-panel-copy reveal">
+        <span class="section-kicker">Licensed & Maintainable</span>
+        <h2>不做破解版主题和插件堆出来的便宜站。</h2>
+        <p>低价建站最常见的坑，是用破解版主题、来路不明插件或无法升级的页面模板。上线时看起来便宜，后期可能出现安全漏洞、功能失效、无法更新、无法迁移，甚至网站被挂马。</p>
+      </div>
+      <div class="trust-panel-grid">
+        <article class="trust-chip reveal"><b>正版授权</b><span>优先使用已购买或正规授权的主题、插件和工具。</span></article>
+        <article class="trust-chip reveal"><b>可维护</b><span>网站上线后仍可更新、备份、排查问题和继续扩展。</span></article>
+        <article class="trust-chip reveal"><b>可交接</b><span>后台结构、插件用途和维护建议会讲清楚，避免后期被锁死。</span></article>
+      </div>
+    </div>`;
+  anchor.insertAdjacentElement("afterend", section);
+  section.querySelectorAll(".reveal").forEach((el) => {
+    revealObserver.observe(el);
+    setTimeout(() => el.classList.add("visible"), 80);
+  });
+}
+
 enhanceMegaMenus();
 enhanceHomeLikeDemo();
+enhanceHomeDecisionGuide();
+enhanceServiceConversionBlocks();
+enhanceLicensedTrustBlocks();
 enhanceContactFinder();
