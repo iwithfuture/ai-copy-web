@@ -478,9 +478,160 @@ function enhanceLicensedTrustBlocks() {
   });
 }
 
+const industrySolutions = [
+  {
+    slug: "b2b-factory.html",
+    title: "B2B 工厂官网",
+    short: "适合制造商、OEM/ODM 工厂、出口供应商",
+    desc: "把产品目录、生产能力、认证资质、项目经验和询盘入口做清楚，让海外采购更快判断能不能合作。",
+    demo: "https://demo.iwithfuture.com/#machinery",
+    image: "https://elements-resized.envatousercontent.com/elements-template-kits-cover-images/files/654787959/fabrix-cover.jpg?w=433&cf_fit=scale-down&q=85&format=auto&s=839e9ec25e43532a15434c219a62662f7f61932f4bb69a0e226d7e098e22e9a0"
+  },
+  {
+    slug: "machinery.html",
+    title: "机械设备网站",
+    short: "适合设备厂、自动化设备、出口机械",
+    desc: "重点展示型号、参数、应用场景、视频演示和售后能力，减少采购反复询问基础信息。",
+    demo: "https://demo.iwithfuture.com/#machinery",
+    image: "https://elements-resized.envatousercontent.com/elements-template-kits-cover-images/files/347074086/cover-image.jpg?w=433&cf_fit=scale-down&q=85&format=auto&s=980c5707bcf32ac1b5455492184380f214f862621c903912ec71f0e833e3df7b"
+  },
+  {
+    slug: "industrial-parts.html",
+    title: "工业零部件网站",
+    short: "适合五金、配件、加工件、定制零件",
+    desc: "用分类、型号、材质、规格、兼容性和询价表单，帮助采购快速筛选并提交需求。",
+    demo: "https://demo.iwithfuture.com/#parts",
+    image: "https://elements-resized.envatousercontent.com/elements-template-kits-cover-images/files/397940166/Ketok-Kit.jpg?w=433&cf_fit=scale-down&q=85&format=auto&s=8300a9089acaf75d7b36cb4aba9a6cf7e56f3c17ae048140f5f45e0cde1926cd"
+  },
+  {
+    slug: "home-building.html",
+    title: "家居建材网站",
+    short: "适合建材、家具、装饰材料和工程供应商",
+    desc: "通过材质、颜色、空间效果、工程案例和下载资料，让买家看到产品实际应用和供应能力。",
+    demo: "https://demo.iwithfuture.com/#building",
+    image: "https://elements-resized.envatousercontent.com/elements-template-kits-cover-images/files/654646238/aestona.jpg?w=433&cf_fit=scale-down&q=85&format=auto&s=5da10c38a3dca9781a7f09bd49a1303142551ad974c5a8345d9d8f8e0aabcc4e"
+  },
+  {
+    slug: "electronics.html",
+    title: "电子电器网站",
+    short: "适合电子产品、智能硬件、电器和配件",
+    desc: "突出认证、技术参数、产品矩阵、渠道合作和资料下载，方便经销商或采购评估。",
+    demo: "https://demo.iwithfuture.com/#electronics",
+    image: "https://elements-resized.envatousercontent.com/elements-template-kits-cover-images/files/636491335/Occidensential%20-%20Cover%20Template%20Kit.jpg?w=433&cf_fit=scale-down&q=85&format=auto&s=16221a06033e74f18b48712e9f5c9a1da8a4b714b33b0c08b8f2fd69bbd9af50"
+  },
+  {
+    slug: "beauty.html",
+    title: "美妆个护网站",
+    short: "适合护肤、美妆、个护和 DTC 品牌",
+    desc: "强化品牌视觉、产品功效、成分说明、社媒内容和复购入口，适合后续接 Shopify 转化。",
+    demo: "https://demo.iwithfuture.com/#beauty",
+    image: "https://elements-resized.envatousercontent.com/elements-template-kits-cover-images/files/633180894/Syantik%20Elementor%20Cover.jpg?w=433&cf_fit=scale-down&q=85&format=auto&s=88fd50ecedfc35bbe8536de2241415c6b3b4671e00529b3e1f74a58e242690c0"
+  },
+  {
+    slug: "medical-devices.html",
+    title: "医疗器械网站",
+    short: "适合设备、耗材、医疗产品和出口经销",
+    desc: "重点呈现合规资质、产品参数、应用场景、说明资料和询价路径，降低专业买家的信任门槛。",
+    demo: "https://demo.iwithfuture.com/#medical",
+    image: "https://elements-resized.envatousercontent.com/elements-template-kits-cover-images/files/431851040/preview%20copy.jpg?w=433&cf_fit=scale-down&q=85&format=auto&s=5461829be2476fae15102ec8733fa1281436d814d4798eff840c22e802d4211e"
+  },
+  {
+    slug: "new-energy.html",
+    title: "新能源产品网站",
+    short: "适合储能、光伏、电池、充电设备",
+    desc: "用解决方案、项目案例、技术参数和下载资料，承接海外工程客户和渠道合作咨询。",
+    demo: "https://demo.iwithfuture.com/#energy",
+    image: "https://elements-resized.envatousercontent.com/elements-template-kits-cover-images/files/640642222/Coverimage-Solarize.jpg?w=433&cf_fit=scale-down&q=85&format=auto&s=1450b2e17cf18dcca1220fe9e904e5d8e0eb70406d068a59622def28ec8f5a8c"
+  },
+  {
+    slug: "cross-border-ecommerce.html",
+    title: "跨境电商独立站",
+    short: "适合 DTC 品牌、在线零售和 Shopify 店铺",
+    desc: "围绕商品页、支付、订单、评价、优惠活动和再营销设计页面，让流量更容易转化成订单。",
+    demo: "https://demo.iwithfuture.com/#ecommerce",
+    image: "https://elements-resized.envatousercontent.com/elements-template-kits-cover-images/files/335130366/cover.jpg?w=433&cf_fit=scale-down&q=85&format=auto&s=663073e1c9ba825b5045d237c333dbb99c81f258645edf3c266f6f01f48299b3"
+  },
+  {
+    slug: "foreign-trade-soho.html",
+    title: "外贸 SOHO 获客站",
+    short: "适合个人外贸、代理、轻量服务团队",
+    desc: "用轻量官网建立可信身份、服务范围、产品方向和咨询入口，先低成本启动海外获客。",
+    demo: "https://demo.iwithfuture.com/",
+    image: "https://elements-resized.envatousercontent.com/elements-template-kits-cover-images/files/654646238/aestona.jpg?w=433&cf_fit=scale-down&q=85&format=auto&s=5da10c38a3dca9781a7f09bd49a1303142551ad974c5a8345d9d8f8e0aabcc4e"
+  }
+];
+
+function enhanceIndustryDirectory() {
+  const isHome = /\/(?:index\.html)?$/.test(location.pathname) || location.pathname.endsWith("/AI/");
+  if (!isHome || document.querySelector(".client-industry-grid")) return;
+  const groups = [...document.querySelectorAll(".directory-group")];
+  const group = groups.find((item) => item.querySelector("h3")?.textContent.trim() === "行业方案");
+  if (!group) return;
+
+  group.classList.add("client-industry-group");
+  group.innerHTML = `
+    <div class="client-industry-head">
+      <span class="section-kicker">Industry Websites</span>
+      <h3>按你的行业，选择更接近客户采购逻辑的网站结构。</h3>
+      <p>不是简单换一套模板，而是把海外买家真正会看的信息放到页面里：产品、参数、案例、资质、下载资料和询盘入口。</p>
+    </div>
+    <div class="client-industry-grid">
+      ${industrySolutions.slice(0, 8).map((item) => `
+        <a class="client-industry-card" href="pages/${item.slug}">
+          <b>${item.title}</b>
+          <span>${item.short}</span>
+          <small>${item.desc}</small>
+        </a>`).join("")}
+    </div>`;
+}
+
+function enhanceIndustryDemoTemplates() {
+  const slug = location.pathname.split("/").pop();
+  const item = industrySolutions.find((entry) => entry.slug === slug);
+  if (!item || document.querySelector(".industry-demo-templates")) return;
+  const hero = document.querySelector(".inner-hero");
+  if (!hero) return;
+  const related = industrySolutions.filter((entry) => entry.slug !== slug).slice(0, 3);
+
+  const section = document.createElement("section");
+  section.className = "section section-soft industry-demo-templates";
+  section.innerHTML = `
+    <div class="container industry-demo-shell">
+      <div class="industry-demo-copy reveal">
+        <span class="section-kicker">Demo Reference</span>
+        <h2>先看接近你行业的 Demo，再决定网站风格和页面结构。</h2>
+        <p>${item.title} 建站时，可以先参考模板站里的行业 Demo。你不需要照搬模板，重点是确认页面结构、信息层级、产品展示方式和询盘入口。</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary magnetic" href="${item.demo}" target="_blank" rel="noopener">查看对应 Demo</a>
+          <a class="btn btn-outline-dark magnetic" href="contact.html">带着 Demo 咨询</a>
+        </div>
+      </div>
+      <div class="industry-demo-cards">
+        <a class="industry-demo-card main reveal" href="${item.demo}" target="_blank" rel="noopener">
+          <span><img src="${item.image}" alt="${item.title} Demo" loading="lazy"></span>
+          <b>${item.title} Demo</b>
+          <small>${item.short}</small>
+        </a>
+        ${related.map((entry) => `
+          <a class="industry-demo-card reveal" href="${entry.demo}" target="_blank" rel="noopener">
+            <span><img src="${entry.image}" alt="${entry.title} Demo" loading="lazy"></span>
+            <b>${entry.title}</b>
+            <small>${entry.short}</small>
+          </a>`).join("")}
+      </div>
+    </div>`;
+  hero.insertAdjacentElement("afterend", section);
+  section.querySelectorAll(".reveal").forEach((el) => {
+    revealObserver.observe(el);
+    setTimeout(() => el.classList.add("visible"), 80);
+  });
+}
+
 enhanceMegaMenus();
 enhanceHomeLikeDemo();
 enhanceHomeDecisionGuide();
 enhanceServiceConversionBlocks();
 enhanceLicensedTrustBlocks();
+enhanceIndustryDirectory();
+enhanceIndustryDemoTemplates();
 enhanceContactFinder();
