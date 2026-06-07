@@ -536,7 +536,7 @@ p {
 
 /* demo.iwithfuture inspired home redesign */
 .demo-inspired-home .hero {
-  min-height: 92vh;
+  min-height: clamp(880px, 92vh, 980px);
   background:
     linear-gradient(180deg, rgba(250, 251, 252, .94), rgba(242, 245, 247, .86)),
     #FAFBFC;
@@ -550,22 +550,22 @@ p {
 }
 
 .demo-inspired-home .hero-content {
-  max-width: 600px;
+  max-width: 560px;
 }
 
 .demo-inspired-home .hero .container.hero-content {
   margin-left: calc((100vw - min(var(--max), calc(100vw - 40px))) / 2 + clamp(12px, 2.5vw, 34px));
   padding-top: 118px;
-  padding-bottom: 98px;
+  padding-bottom: 138px;
 }
 
 .demo-inspired-home .hero p {
-  max-width: 590px;
+  max-width: 540px;
 }
 
 .demo-inspired-home .hero h1 {
-  max-width: 620px;
-  font-size: clamp(50px, 4.9vw, 76px);
+  max-width: 570px;
+  font-size: clamp(48px, 4.55vw, 72px);
   letter-spacing: 0;
 }
 
@@ -583,10 +583,10 @@ p {
 
 .demo-stage {
   position: absolute;
-  right: calc((100vw - min(var(--max), calc(100vw - 40px))) / 2 + clamp(8px, 1.8vw, 26px));
-  top: 54%;
+  right: max(20px, calc((100vw - min(var(--max), calc(100vw - 40px))) / 2 - clamp(48px, 4.5vw, 92px)));
+  top: 50%;
   z-index: 3;
-  width: min(38vw, 540px);
+  width: min(34vw, 500px);
   transform: translateY(-50%);
 }
 
@@ -605,7 +605,7 @@ p {
   align-items: center;
   justify-content: space-between;
   gap: 18px;
-  padding: 18px 22px;
+  padding: 15px 20px;
   border-bottom: 1px solid #e1e8ed;
   background: linear-gradient(180deg, #fff, #f8fbff);
 }
@@ -628,8 +628,8 @@ p {
   align-items: center;
   justify-content: space-between;
   gap: 14px;
-  margin: 20px 22px 18px;
-  padding: 12px 14px 12px 16px;
+  margin: 16px 20px 16px;
+  padding: 10px 12px 10px 14px;
   border: 1px solid #dbe6ef;
   border-radius: 14px;
   background: linear-gradient(180deg, #fff, #f8fbff);
@@ -657,7 +657,7 @@ p {
   display: flex;
   gap: 9px;
   overflow-x: auto;
-  padding: 0 22px 18px;
+  padding: 0 20px 16px;
 }
 
 .template-tabs button {
@@ -681,14 +681,14 @@ p {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 14px;
-  padding: 0 22px 22px;
+  padding: 0 20px 20px;
 }
 
 .template-card-mini {
   display: grid;
   align-content: start;
-  min-height: 190px;
-  padding: 12px;
+  min-height: 168px;
+  padding: 10px;
   border: 1px solid #e1e8ed;
   border-radius: 16px;
   background: linear-gradient(180deg, #fff, #fbfdff);
@@ -714,9 +714,9 @@ p {
 
 .template-thumb {
   display: block;
-  height: 92px;
-  padding: 10px;
-  margin-bottom: 13px;
+  height: 78px;
+  padding: 8px;
+  margin-bottom: 11px;
   overflow: hidden;
   border: 1px solid rgba(40, 114, 250, .12);
   border-radius: 12px;
@@ -761,7 +761,7 @@ p {
 }
 
 .template-metrics {
-  display: grid;
+  display: none;
   grid-template-columns: repeat(3, 1fr);
   border-top: 1px solid #e1e8ed;
   background: #f8fbff;
@@ -831,6 +831,20 @@ p {
   color: #5f7184;
   font-size: 14px;
   line-height: 1.55;
+}
+
+@media (min-width: 1440px) {
+  .demo-stage {
+    width: min(32vw, 492px);
+    right: max(18px, calc((100vw - min(var(--max), calc(100vw - 40px))) / 2 - 118px));
+  }
+
+  .demo-inspired-home .hero-bg {
+    background:
+      radial-gradient(circle at 80% 18%, rgba(110, 193, 228, .2), transparent 24%),
+      radial-gradient(circle at 68% 72%, rgba(40, 114, 250, .12), transparent 30%),
+      url("https://iwithfuture.com/wp-content/uploads/2024/10/Website-Construction.svg") right calc((100vw - min(var(--max), calc(100vw - 40px))) / 2 - 104px) center / min(31vw, 500px) auto no-repeat;
+  }
 }
 
 @media (max-width: 1180px) {
