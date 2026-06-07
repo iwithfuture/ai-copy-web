@@ -478,9 +478,244 @@ function enhanceLicensedTrustBlocks() {
   });
 }
 
+function enhanceIndustrySolutionPages() {
+  const slug = location.pathname.split("/").pop();
+  const pages = {
+    "b2b-factory.html": {
+      label: "B2B Factory Website",
+      title: "B2B 工厂出海方案",
+      hero: "适合制造商、OEM/ODM 工厂和出口供应商。网站重点不是“好看”，而是让海外采购能快速判断你的生产能力、产品范围、认证资质和合作流程。",
+      outcome: "把产品目录、工厂实力、认证资料、项目经验和询盘入口放到同一条采购路径里。",
+      fit: ["产品线比较多，需要按分类展示", "客户会关心产能、证书、交期和定制能力", "希望长期做 Google SEO 和自然询盘"],
+      structure: ["首页：定位、核心产品、工厂优势、合作流程", "产品目录：分类、参数、应用场景、可定制项", "关于工厂：产线、质检、证书、团队与出口经验", "案例与 FAQ：降低采购顾虑，减少重复沟通"],
+      conversion: ["每个产品分类页保留询盘按钮", "下载资料前引导留下邮箱", "把 WhatsApp / Email / 表单放在采购决策节点", "用 GA4 和转化事件追踪有效询盘来源"],
+      seo: ["产品词 + manufacturer / supplier / factory", "应用场景词，例如 for construction / for agriculture", "认证、材质、工艺、MOQ、交期等采购问题", "对比型内容：材质对比、工艺对比、选型指南"],
+      demos: [
+        ["机械设备官网 Demo", "适合设备工厂和出口制造商", "https://elements-resized.envatousercontent.com/elements-template-kits-cover-images/files/654787959/fabrix-cover.jpg?w=433&cf_fit=scale-down&q=85&format=auto&s=839e9ec25e43532a15434c219a62662f7f61932f4bb69a0e226d7e098e22e9a0", "https://live.kitpixel.com/fabrix/template-kit/home/?storefront=envato-elements"],
+        ["产品目录型官网", "适合 SKU 多、分类清晰的 B2B 产品", "https://elements-resized.envatousercontent.com/elements-template-kits-cover-images/files/347074086/cover-image.jpg?w=433&cf_fit=scale-down&q=85&format=auto&s=980c5707bcf32ac1b5455492184380f214f862621c903912ec71f0e833e3df7b", "https://templatekits.c-kav.com/demo2/zoi-kit/?storefront=envato-elements"],
+      ],
+      demoLibrary: "https://demo.iwithfuture.com/#machinery"
+    },
+    "machinery.html": {
+      label: "Machinery Website",
+      title: "机械设备外贸网站",
+      hero: "机械设备网站要先让采购确认型号、参数、应用场景、视频演示和售后能力。页面需要帮助客户快速判断设备是否适配，而不是只展示一张产品图。",
+      outcome: "把设备型号、技术参数、应用行业、运行视频、售后支持和询盘表单串成一条清晰路径。",
+      fit: ["设备单价高，客户决策周期长", "需要展示参数、工况、产能、耗材和案例", "客户经常反复询问选型、安装和售后"],
+      structure: ["产品页：型号、参数表、适用场景、视频和 FAQ", "行业应用页：按工况讲解决方案", "案例页：展示现场、结果和客户行业", "资料页：说明书、规格书、维护指南"],
+      conversion: ["产品页放“发送型号需求”按钮", "参数表旁边放询价入口", "视频和案例下方引导预约沟通", "用表单字段收集产能、尺寸、目标市场等信息"],
+      seo: ["machine / equipment + manufacturer / supplier", "型号参数词、工艺词、应用行业词", "How to choose / maintenance / troubleshooting", "案例内容：国家、行业、设备型号、应用结果"],
+      demos: [
+        ["机械设备官网 Demo", "适合设备工厂和出口制造商", "https://elements-resized.envatousercontent.com/elements-template-kits-cover-images/files/654787959/fabrix-cover.jpg?w=433&cf_fit=scale-down&q=85&format=auto&s=839e9ec25e43532a15434c219a62662f7f61932f4bb69a0e226d7e098e22e9a0", "https://live.kitpixel.com/fabrix/template-kit/home/?storefront=envato-elements"],
+        ["资料下载型页面", "适合规格书、案例和技术资料承接", "https://elements-resized.envatousercontent.com/elements-template-kits-cover-images/files/430395189/Cover%20Image.jpg?w=433&cf_fit=scale-down&q=85&format=auto&s=fec4381fc35b1e507f5174df8df4d9f9b559ba42721b76fedaf5bd6723c46f1c", "https://www.roofixer.oxacor.com/?storefront=envato-elements"],
+      ],
+      demoLibrary: "https://demo.iwithfuture.com/#machinery"
+    },
+    "industrial-parts.html": {
+      label: "Industrial Parts Website",
+      title: "工业零部件网站",
+      hero: "工业零部件网站要解决的是“能不能匹配我的规格”。客户会看材质、尺寸、公差、兼容型号、图纸加工能力和 MOQ，页面结构必须方便筛选和询价。",
+      outcome: "让客户按类别、材质、规格和应用快速找到合适产品，并提交图纸或参数需求。",
+      fit: ["SKU 多、型号多、参数复杂", "支持来图加工、定制和小批量试单", "客户常问材质、尺寸、公差、兼容性"],
+      structure: ["分类页：按材质、用途、规格建立筛选逻辑", "产品页：参数表、图纸下载、兼容型号、FAQ", "能力页：加工工艺、质检标准、包装和交期", "询价页：支持上传图纸或填写规格"],
+      conversion: ["产品页增加 RFQ 按钮", "上传图纸入口放在首屏和页尾", "用表单收集材质、数量、公差、目标交期", "给重复采购客户保留快捷联系入口"],
+      seo: ["part / component + material / size / standard", "custom machining / OEM parts / replacement parts", "材质、表面处理、公差、标准号内容", "兼容型号和应用行业长尾词"],
+      demos: [
+        ["工业零部件官网 Demo", "适合配件、五金和加工件供应商", "https://elements-resized.envatousercontent.com/elements-template-kits-cover-images/files/397940166/Ketok-Kit.jpg?w=433&cf_fit=scale-down&q=85&format=auto&s=8300a9089acaf75d7b36cb4aba9a6cf7e56f3c17ae048140f5f45e0cde1926cd", "https://gajean.com/ketok/template-kit/homepage/?storefront=envato-elements"],
+        ["参数筛选型目录", "适合规格多、型号多的零部件产品", "https://elements-resized.envatousercontent.com/elements-template-kits-cover-images/files/351017006/cover%20Gadgetin.jpg?w=433&cf_fit=scale-down&q=85&format=auto&s=2fa810cd637a2967c4329d86b2d5f639d5389776056395eec37b7e7a92f0ac4b", "https://templatekit.brothergrounds.com/gadgetin/?storefront=envato-elements"],
+      ],
+      demoLibrary: "https://demo.iwithfuture.com/#parts"
+    },
+    "home-building.html": {
+      label: "Home & Building Website",
+      title: "家居建材出海网站",
+      hero: "家居建材网站既要展示质感，也要给采购足够的工程信息。客户会关注材质、尺寸、颜色、安装方式、案例场景、认证和批量供货能力。",
+      outcome: "用场景图、产品系列、材质工艺、项目案例和资料下载帮助客户建立信任。",
+      fit: ["产品视觉很重要，需要展示空间效果", "客户会比较材质、颜色、尺寸和工程案例", "适合做多语言、目录下载和询盘承接"],
+      structure: ["首页：品牌定位、产品系列、场景图和优势", "产品系列页：材质、颜色、尺寸、安装方式", "项目案例页：国家、空间、产品和效果", "下载中心：目录册、规格书、安装指南"],
+      conversion: ["场景图旁边设置“获取目录”入口", "产品系列页引导索取样品或报价", "案例页引导预约项目沟通", "下载资料前收集邮箱和目标市场"],
+      seo: ["material / furniture / building product + supplier", "颜色、材质、尺寸、安装方式长尾词", "应用空间词：hotel / villa / office / retail", "案例文章：项目类型、国家、产品系列"],
+      demos: [
+        ["家居建材官网 Demo", "适合建材、家具和装饰材料品牌", "https://elements-resized.envatousercontent.com/elements-template-kits-cover-images/files/654646238/aestona.jpg?w=433&cf_fit=scale-down&q=85&format=auto&s=5da10c38a3dca9781a7f09bd49a1303142551ad974c5a8345d9d8f8e0aabcc4e", "https://demo.zaderonstudio.com/aestona/?storefront=envato-elements"],
+        ["项目案例型页面", "适合空间效果、安装场景和工程案例", "https://elements-resized.envatousercontent.com/elements-template-kits-cover-images/files/467814402/Elementor%20Template%20Kit.jpg?w=433&cf_fit=scale-down&q=85&format=auto&s=ed8f3822d3639982f34e15ae97185cda49026d76ace837adeb9679715958cb7e", "https://kit.nirmanavisual.com/archidream/template-kit/home/?storefront=envato-elements"],
+      ],
+      demoLibrary: "https://demo.iwithfuture.com/#building"
+    },
+    "electronics.html": {
+      label: "Electronics Website",
+      title: "电子电器外贸网站",
+      hero: "电子电器网站要让客户快速确认功能、参数、认证、适配场景和渠道合作方式。页面需要兼顾产品矩阵、技术资料和经销商询盘。",
+      outcome: "把产品系列、规格参数、认证资料、应用场景和合作入口清楚展示出来。",
+      fit: ["产品有多种型号和功能差异", "客户重视认证、规格、包装和渠道政策", "需要承接经销商、批发商或 OEM 询盘"],
+      structure: ["产品矩阵：按功能、场景和型号分类", "产品页：参数、认证、包装、下载资料", "应用页：家庭、商业、工业等使用场景", "合作页：经销、批发、OEM/ODM 说明"],
+      conversion: ["产品页放批发询价入口", "认证与规格旁边放下载/咨询按钮", "合作页收集国家、渠道类型和采购量", "广告落地页单独设计主推产品 CTA"],
+      seo: ["electronics / appliance + supplier / manufacturer", "功能词、型号词、认证词、场景词", "wholesale / distributor / OEM / ODM", "产品对比、选型指南和常见问题"],
+      demos: [
+        ["电子电器官网 Demo", "适合电子产品、电器和智能硬件", "https://elements-resized.envatousercontent.com/elements-template-kits-cover-images/files/636491335/Occidensential%20-%20Cover%20Template%20Kit.jpg?w=433&cf_fit=scale-down&q=85&format=auto&s=16221a06033e74f18b48712e9f5c9a1da8a4b714b33b0c08b8f2fd69bbd9af50", "https://mydemo.occidensential.com/insighto/?storefront=envato-elements"],
+        ["技术规格页面", "适合认证、参数、应用和资料下载", "https://elements-resized.envatousercontent.com/elements-template-kits-cover-images/files/635400361/Cover.jpg?w=433&cf_fit=scale-down&q=85&format=auto&s=e42d9b5c5b6aaf833a956880f524d7e0be7325e4f6cb0ca112fbf4ab48413d48", "https://askproject.net/flynn/home/?storefront=envato-elements"],
+      ],
+      demoLibrary: "https://demo.iwithfuture.com/#electronics"
+    },
+    "beauty.html": {
+      label: "Beauty Brand Website",
+      title: "美妆个护品牌出海",
+      hero: "美妆个护网站要同时讲清品牌质感、成分功效、使用场景和购买信任。页面需要适合社媒种草、广告落地和后续 Shopify 转化。",
+      outcome: "用品牌故事、产品功效、成分说明、用户评价和内容入口承接海外用户。",
+      fit: ["产品依赖视觉、故事和信任背书", "需要承接 Instagram / TikTok / Facebook 流量", "后续可能接 Shopify、KOL 和再营销"],
+      structure: ["首页：品牌定位、明星产品、功效和评价", "产品页：成分、功效、使用方式、FAQ", "内容页：护肤指南、使用教程、前后对比", "转化页：套装、优惠、评价和订阅入口"],
+      conversion: ["社媒入口落到主推产品页", "产品页强调功效、成分和评价", "邮件订阅承接折扣和新品通知", "后续可接 Shopify 购物路径"],
+      seo: ["skincare / beauty / personal care + benefit", "成分词、功效词、肤质词、使用方法", "best / how to use / routine 类内容", "品牌曝光和社媒内容再利用"],
+      demos: [
+        ["美妆个护官网 Demo", "适合护肤、美妆、个护和 DTC 品牌", "https://elements-resized.envatousercontent.com/elements-template-kits-cover-images/files/633180894/Syantik%20Elementor%20Cover.jpg?w=433&cf_fit=scale-down&q=85&format=auto&s=88fd50ecedfc35bbe8536de2241415c6b3b4671e00529b3e1f74a58e242690c0", "https://syantik.tokotema.xyz/template-kit/home/?storefront=envato-elements"],
+        ["品牌故事页面", "适合视觉、功效、成分和用户信任", "https://elements-resized.envatousercontent.com/elements-template-kits-cover-images/files/446256112/cover.jpg?w=433&cf_fit=scale-down&q=85&format=auto&s=353f3978a318af17be109cd5ed562efcaa29c8d3a09610ff651eb144b66d50f8", "https://themesflat.co/kitmellis/template-kit/home-01/?storefront=envato-elements"],
+      ],
+      demoLibrary: "https://demo.iwithfuture.com/#beauty"
+    },
+    "medical-devices.html": {
+      label: "Medical Device Website",
+      title: "医疗器械外贸网站",
+      hero: "医疗器械网站最重要的是合规、专业和信任。客户会先看认证、参数、适用场景、说明书和售后支持，再判断是否进入询价。",
+      outcome: "把产品参数、认证资料、适用科室、说明书下载和专业询价流程整理清楚。",
+      fit: ["产品涉及认证、规格和使用说明", "客户是经销商、医院、诊所或采购机构", "需要用专业内容降低合规与信任顾虑"],
+      structure: ["产品页：参数、认证、适用场景、说明书", "资料页：CE/FDA、手册、检测报告、FAQ", "应用页：按科室或使用场景组织内容", "询价页：收集采购身份、国家和数量"],
+      conversion: ["认证资料旁边放咨询入口", "产品页提供说明书下载", "表单收集国家、采购类型、预计数量", "避免夸大医疗效果，文案保持专业克制"],
+      seo: ["medical device / equipment + supplier", "认证词、科室词、型号词、用途词", "manual / specification / distributor 类内容", "FAQ 覆盖安全、合规、包装、售后问题"],
+      demos: [
+        ["医疗器械官网 Demo", "适合设备、耗材和医疗产品出口", "https://elements-resized.envatousercontent.com/elements-template-kits-cover-images/files/431851040/preview%20copy.jpg?w=433&cf_fit=scale-down&q=85&format=auto&s=5461829be2476fae15102ec8733fa1281436d814d4798eff840c22e802d4211e", "https://kitpro.site/colabs/?storefront=envato-elements"],
+        ["认证资料页面", "适合 CE、FDA、说明书和技术文档", "https://elements-resized.envatousercontent.com/elements-template-kits-cover-images/files/496276959/cover.jpg?w=433&cf_fit=scale-down&q=85&format=auto&s=7e64fb13fa7adcbf9eb3a065f0469ce0e370a802cd37301118eae10df5339675", "https://themesflat.com/laboixkit/template-kit/home-01/?storefront=envato-elements"],
+      ],
+      demoLibrary: "https://demo.iwithfuture.com/#medical"
+    },
+    "new-energy.html": {
+      label: "New Energy Website",
+      title: "新能源产品出海",
+      hero: "新能源网站要把产品能力、系统方案、应用场景和项目案例讲清楚。客户通常会比较参数、认证、稳定性、安装场景和长期服务能力。",
+      outcome: "围绕储能、光伏、电池、充电产品建立解决方案型网站结构。",
+      fit: ["产品需要按应用场景解释方案", "客户关注认证、容量、寿命、安装和案例", "需要承接工程商、经销商和项目询盘"],
+      structure: ["解决方案页：住宅、商业、工业、户外等场景", "产品页：参数、认证、系统兼容和下载资料", "案例页：项目规模、国家、效果和图片", "支持页：安装、售后、FAQ 和资料下载"],
+      conversion: ["方案页收集项目规模和应用场景", "参数区放资料下载和预约沟通", "案例页引导提交项目需求", "广告落地页按单一产品或场景设计"],
+      seo: ["solar / energy storage / battery + solution", "容量、功率、应用场景、认证长尾词", "installation / maintenance / project case", "国家与应用场景结合的案例内容"],
+      demos: [
+        ["新能源官网 Demo", "适合储能、光伏、电池和充电产品", "https://elements-resized.envatousercontent.com/elements-template-kits-cover-images/files/640642222/Coverimage-Solarize.jpg?w=433&cf_fit=scale-down&q=85&format=auto&s=1450b2e17cf18dcca1220fe9e904e5d8e0eb70406d068a59622def28ec8f5a8c", "https://askit.dextheme.net/solarize/?storefront=envato-elements"],
+        ["项目案例页面", "适合工程案例、下载资料和询盘", "https://elements-resized.envatousercontent.com/elements-template-kits-cover-images/files/633660695/main%20preview.jpg?w=433&cf_fit=scale-down&q=85&format=auto&s=80f8117e9e5013a4f201e458c146b2962ee62769b554e09987bd28acbcda175e", "https://demokit.creativemox.com/sunara/?storefront=envato-elements"],
+      ],
+      demoLibrary: "https://demo.iwithfuture.com/#energy"
+    },
+    "cross-border-ecommerce.html": {
+      label: "Cross-border Ecommerce",
+      title: "跨境电商独立站",
+      hero: "跨境电商独立站要服务于转化和复购。页面重点是商品卖点、信任评价、支付体验、广告落地、邮件订阅和再营销，而不只是一个品牌展示站。",
+      outcome: "把 Shopify 商品页、广告落地页、评价、套装组合和再营销事件规划到同一套转化路径里。",
+      fit: ["需要在线销售、支付和订单管理", "依赖广告、社媒或 KOL 带来流量", "希望做邮件订阅、优惠券、复购和再营销"],
+      structure: ["首页：品牌定位、主推商品、评价和优惠入口", "商品页：卖点、图片、评价、FAQ 和加购路径", "落地页：按广告主题单独设计", "内容页：使用教程、对比、场景和品牌故事"],
+      conversion: ["首屏突出主推商品和优惠", "商品页减少干扰，强化加购和信任", "接入 Meta Pixel / GA4 / Google Ads 转化", "用邮件和再营销承接未购买用户"],
+      seo: ["product + benefit / use case", "best / review / how to use / comparison", "品牌词、产品词和场景词", "用博客和指南承接非品牌自然流量"],
+      demos: [
+        ["跨境电商独立站 Demo", "适合 DTC 品牌和在线销售", "https://elements-resized.envatousercontent.com/elements-template-kits-cover-images/files/335130366/cover.jpg?w=433&cf_fit=scale-down&q=85&format=auto&s=663073e1c9ba825b5045d237c333dbb99c81f258645edf3c266f6f01f48299b3", "https://templatekit.jegtheme.com/kramic/?storefront=envato-elements"],
+        ["产品转化页面", "适合卖点、评价、套装和再营销", "https://elements-resized.envatousercontent.com/elements-template-kits-cover-images/files/420056802/Cover-Image-vegetta.jpg?w=433&cf_fit=scale-down&q=85&format=auto&s=d04dd3628871bc05a13acb6ec7082660476990e147df45f06e7c1c77bacbdc07", "https://ibeydesign.com/vegetta/?storefront=envato-elements"],
+      ],
+      demoLibrary: "https://demo.iwithfuture.com/#ecommerce"
+    },
+    "foreign-trade-soho.html": {
+      label: "SOHO Website",
+      title: "外贸 SOHO 获客方案",
+      hero: "外贸 SOHO 网站要轻量、清晰、可信。重点是让客户知道你能提供什么产品或服务、如何合作、如何快速联系，而不是堆很多复杂栏目。",
+      outcome: "用轻量官网承接名片、社媒、邮件和 Google 搜索流量，形成稳定联系入口。",
+      fit: ["个人或小团队刚开始做海外获客", "产品线不复杂，但需要专业形象", "预算有限，希望先上线再逐步优化"],
+      structure: ["首页：定位、服务/产品、优势和联系方式", "产品或服务页：按最核心类别展示", "关于页：经验、合作方式和信任信息", "联系页：邮箱、微信、WhatsApp 和需求表单"],
+      conversion: ["首屏放清楚联系入口", "每个服务模块都能进入咨询", "用案例或流程解释合作方式", "后续可逐步升级成 WordPress 内容站"],
+      seo: ["niche product / sourcing / supplier service", "目标市场 + 产品/服务组合词", "常见采购问题和合作流程", "从少量高意图页面开始沉淀"],
+      demos: [
+        ["轻量官网 Demo", "适合 SOHO、小团队和顾问型服务", "https://elements-resized.envatousercontent.com/elements-template-kits-cover-images/files/309504244/2340x1560.jpg?w=433&cf_fit=scale-down&q=85&format=auto&s=0e41faae051d0cbd7ad99aba10246f5482a06cdda9a6f787174e9701aa01c106", "https://elementorpress.com/templatekit-pro/layout03/?storefront=envato-elements"],
+        ["服务展示页面", "适合先建立可信联系入口", "https://elements-resized.envatousercontent.com/elements-template-kits-cover-images/files/465785323/Cover%20image%20Pecalang%20-%20Elementor%20Template%20Kit.jpg?w=433&cf_fit=scale-down&q=85&format=auto&s=c6b65d1fe97a8bd5c6c2c3340211ba50cd8e59a076a8ab4b626ee5d2fcb6a6c5", "https://kit.nirmanavisual.com/pecalang/template-kit/home1/?storefront=envato-elements"],
+      ],
+      demoLibrary: "https://demo.iwithfuture.com/"
+    }
+  };
+  const data = pages[slug];
+  if (!data || document.querySelector(".industry-playbook")) return;
+
+  const hero = document.querySelector(".inner-hero");
+  if (!hero) return;
+
+  document.body.classList.add("industry-page-enhanced");
+  const heroTitle = hero.querySelector("h1");
+  const heroText = hero.querySelector("p");
+  const heroPanel = hero.querySelector(".hero-panel");
+  if (heroTitle) heroTitle.textContent = data.title;
+  if (heroText) heroText.textContent = data.hero;
+  if (heroPanel) {
+    heroPanel.innerHTML = `
+      <h4>这个页面会帮客户判断</h4>
+      <ul>
+        <li>你是否适合这个行业的网站结构</li>
+        <li>核心栏目应该怎么安排</li>
+        <li>询盘入口应该放在哪里</li>
+        <li>内容和 SEO 可以从哪里开始</li>
+      </ul>`;
+  }
+
+  const list = (items) => items.map((item) => `<li>${item}</li>`).join("");
+  const demos = data.demos.map(([title, desc, img, href]) => `
+    <a class="industry-demo-card" href="${href}" target="_blank" rel="noopener">
+      <span><img src="${img}" alt="${title}" loading="lazy"></span>
+      <b>${title}</b>
+      <small>${desc}</small>
+    </a>`).join("");
+
+  const section = document.createElement("section");
+  section.className = "section industry-playbook";
+  section.innerHTML = `
+    <div class="container">
+      <div class="industry-playbook-head reveal">
+        <span class="section-kicker">${data.label}</span>
+        <h2>${data.title}应该这样规划，而不是简单套模板。</h2>
+        <p>${data.outcome}</p>
+      </div>
+      <div class="industry-playbook-grid">
+        <article class="industry-plan-card industry-plan-card-main reveal">
+          <small>01 / 适合谁</small>
+          <h3>先判断你的业务是不是这种结构</h3>
+          <ul>${list(data.fit)}</ul>
+        </article>
+        <article class="industry-plan-card reveal">
+          <small>02 / 页面结构</small>
+          <h3>客户真正会看的栏目</h3>
+          <ul>${list(data.structure)}</ul>
+        </article>
+        <article class="industry-plan-card reveal">
+          <small>03 / 询盘转化</small>
+          <h3>把咨询入口放在决策节点</h3>
+          <ul>${list(data.conversion)}</ul>
+        </article>
+        <article class="industry-plan-card reveal">
+          <small>04 / 内容 SEO</small>
+          <h3>从采购问题和长尾词开始</h3>
+          <ul>${list(data.seo)}</ul>
+        </article>
+      </div>
+      <div class="industry-demo-panel reveal">
+        <div class="industry-demo-copy">
+          <span class="section-kicker">Demo Reference</span>
+          <h3>可以参考这些页面方向</h3>
+          <p>Demo 不是直接照搬，而是用来判断行业视觉、页面模块和信息层级。真正落地时会根据你的产品、资料、预算和目标市场重新组合。</p>
+          <a class="btn btn-primary magnetic" href="${data.demoLibrary}" target="_blank" rel="noopener">查看对应 Demo</a>
+        </div>
+        <div class="industry-demo-grid">${demos}</div>
+      </div>
+    </div>`;
+
+  hero.insertAdjacentElement("afterend", section);
+  section.querySelectorAll(".reveal").forEach((el) => {
+    revealObserver.observe(el);
+    setTimeout(() => el.classList.add("visible"), 80);
+  });
+}
+
 enhanceMegaMenus();
 enhanceHomeLikeDemo();
 enhanceHomeDecisionGuide();
 enhanceServiceConversionBlocks();
 enhanceLicensedTrustBlocks();
 enhanceContactFinder();
+enhanceIndustrySolutionPages();
