@@ -316,32 +316,12 @@ function enhanceContactFinder() {
           <button class="finder-option" type="button" data-plan="custom"><b>品牌定制官网</b><span>设计差异化和完整交付</span></button>
         </div>
       </div>
-      <div class="finder-result reveal">
-        <div>
-          <span class="section-kicker">Recommendation</span>
-          <h3 id="finderTitle">建议优先考虑 WordPress 外贸建站</h3>
-          <p id="finderText">如果你有产品目录、项目经验、FAQ、下载资料和长期 SEO 需求，WordPress 更适合做可维护的外贸官网底座。</p>
-          <div class="finder-tags" id="finderTags"><span>产品目录</span><span>SEO 内容</span><span>询盘表单</span></div>
-        </div>
-        <a class="btn btn-primary magnetic" href="mailto:iwithfuture@gmail.com">把需求发到邮箱</a>
-      </div>
     </div>`;
   hero.insertAdjacentElement("afterend", finder);
-
-  const plans = {
-    wp: ["建议优先考虑 WordPress 外贸建站", "如果你有产品目录、项目经验、FAQ、下载资料和长期 SEO 需求，WordPress 更适合做可维护的外贸官网底座。", ["产品目录", "SEO 内容", "询盘表单"]],
-    ai: ["建议先做 AI 官网展示建站", "如果你只是想先有一个品牌展示入口，预算控制在 2000 元起，AI 官网可以先快速上线，再根据反馈升级。", ["快速上线", "轻量展示", "预算友好"]],
-    shopify: ["建议后续单独评估 Shopify 独立站", "如果你要在线交易、支付、订单、库存和再营销，Shopify 更适合，但报价需要按商品、支付和运营需求单独评估。", ["在线交易", "商品管理", "再营销"]],
-    custom: ["建议考虑定制建站方案", "如果你希望品牌视觉、首页、内页、移动端、SEO 基础和内容结构都更完整，定制建站更适合。", ["品牌设计", "完整页面", "SEO 基础"]],
-  };
 
   finder.querySelectorAll(".finder-option").forEach((button) => {
     button.addEventListener("click", () => {
       finder.querySelectorAll(".finder-option").forEach((item) => item.classList.toggle("active", item === button));
-      const plan = plans[button.dataset.plan];
-      finder.querySelector("#finderTitle").textContent = plan[0];
-      finder.querySelector("#finderText").textContent = plan[1];
-      finder.querySelector("#finderTags").innerHTML = plan[2].map((tag) => `<span>${tag}</span>`).join("");
     });
   });
 

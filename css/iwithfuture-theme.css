@@ -1176,9 +1176,10 @@ p {
 
 .finder-shell {
   display: grid;
-  grid-template-columns: .95fr 1.05fr;
+  grid-template-columns: minmax(0, 1fr);
   gap: 28px;
   align-items: stretch;
+  max-width: 1040px;
 }
 
 .finder-panel,
