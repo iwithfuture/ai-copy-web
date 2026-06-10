@@ -501,7 +501,6 @@ function enhanceCustomerFacingTemplates() {
     "social-media.html": ["全渠道社媒运营", "适合希望在 LinkedIn、YouTube、Facebook 和 Instagram 持续建立信任的外贸企业。", "内容节奏", "品牌露出", "线索回流"],
     "linkedin-operation.html": ["LinkedIn 社媒运营", "适合 B2B 企业接触采购、老板、工程师和渠道商，用专业内容建立长期信任。", "B2B 决策人", "专业内容", "私域跟进"],
     "youtube-operation.html": ["YouTube 内容运营", "适合产品需要演示、安装、案例或教程的企业，用视频降低客户理解成本。", "视频演示", "搜索曝光", "信任建立"],
-    "email-marketing.html": ["EDM 邮件营销", "适合已有询盘、展会名片或下载线索的企业，用邮件分层跟进和再激活。", "线索培育", "客户分层", "持续跟进"],
     "conversion-optimization.html": ["转化率优化 CRO", "适合有访问但询盘少的网站，逐步优化首屏、信任、表单、按钮和落地页路径。", "询盘质量", "页面测试", "转化提升"],
     "blog.html": ["博客中心", "适合把外贸建站、SEO、广告和运营经验整理成可持续访问的内容入口。", "教程内容", "经验沉淀", "搜索入口"],
     "knowledge-base.html": ["外贸建站知识库", "适合系统查看建站、SEO、广告、社媒和内容运营方法，帮助客户先判断方向。", "系统学习", "方案判断", "长期更新"],
