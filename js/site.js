@@ -472,6 +472,7 @@ function enhanceCustomerFacingTemplates() {
     "speed-security.html": ["网站速度与安全优化", "适合已经上线但加载慢、后台不稳或安全风险较高的网站，先保证客户能顺畅访问，再谈转化。", "速度体验", "安全维护", "稳定访问"],
     "website-maintenance.html": ["网站维护与增长托管", "适合网站已经上线但缺少持续更新、备份、数据复盘和内容优化的企业，让网站保持可用、可改、可增长。", "持续维护", "月度复盘", "内容更新"],
     "seo.html": ["Google SEO 优化", "适合希望用自然搜索持续获得询盘的外贸企业，从关键词、技术、内容和外链四个方向提升可见度。", "自然流量", "关键词布局", "内容资产"],
+    "b2b-organic-growth.html": ["B2B 自然流量运营", "适合已有网站、产品专业且希望持续积累海外自然流量和有效询盘的 B2B 企业。", "网站与增长阶段", "关键词和承接页面", "内容、数据与询盘"],
     "technical-seo.html": ["技术 SEO", "适合网站收录差、速度慢、结构混乱或页面体验不足的情况，先让搜索引擎能正确抓取和理解网站。", "索引抓取", "速度体验", "结构化数据"],
     "content-seo.html": ["内容 SEO", "适合想用文章、指南、FAQ 和对比页承接买家问题的企业，把内容做成可搜索的询盘入口。", "买家问题", "内容集群", "长期排名"],
     "link-building.html": ["外链与品牌曝光", "适合已经有基础内容和产品页的网站，通过高质量曝光、品牌提及和行业内容提升信任。", "品牌信任", "外链质量", "行业曝光"],
@@ -867,6 +868,43 @@ function enhanceIndustrySolutionPages() {
   });
 }
 
+function enhanceOrganicGrowthEntry() {
+  const inPages = /\/pages\//.test(window.location.pathname.replace(/\\/g, "/"));
+  const href = inPages ? "b2b-organic-growth.html" : "pages/b2b-organic-growth.html";
+  const label = "\u81ea\u7136\u6d41\u91cf\u8fd0\u8425";
+
+  const nav = document.querySelector(".nav-links");
+  if (nav && !nav.querySelector('a[href$="b2b-organic-growth.html"]')) {
+    const link = document.createElement("a");
+    link.className = "nav-trigger organic-growth-nav";
+    link.href = href;
+    link.textContent = label;
+    const blogLink = Array.from(nav.children).find((item) => item.matches('a[href$="blog.html"]'));
+    nav.insertBefore(link, blogLink || null);
+  }
+
+  const mobileMenu = document.querySelector(".mobile-menu");
+  if (mobileMenu && !mobileMenu.querySelector('a[href$="b2b-organic-growth.html"]')) {
+    const link = document.createElement("a");
+    link.href = href;
+    link.textContent = "B2B " + label;
+    const seoLink = mobileMenu.querySelector('a[href$="seo.html"]');
+    seoLink ? seoLink.insertAdjacentElement("afterend", link) : mobileMenu.prepend(link);
+  }
+
+  const marketingFooter = Array.from(document.querySelectorAll(".site-footer .footer-grid > div")).find((group) => {
+    const heading = group.querySelector("h6");
+    return heading && /SEO|\u8425\u9500\u83b7\u5ba2/.test(heading.textContent);
+  });
+  if (marketingFooter && !marketingFooter.querySelector('a[href$="b2b-organic-growth.html"]')) {
+    const link = document.createElement("a");
+    link.href = href;
+    link.textContent = "B2B " + label;
+    marketingFooter.insertBefore(link, marketingFooter.firstElementChild.nextSibling);
+  }
+}
+
+enhanceOrganicGrowthEntry();
 enhanceMegaMenus();
 enhanceHomeLikeDemo();
 enhanceHomeDecisionGuide();

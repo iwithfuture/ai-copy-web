@@ -3,6 +3,7 @@ const fs = require("fs");
 const path = require("path");
 
 const root = process.cwd();
+const port = Number(process.env.PORT || 4173);
 const types = {
   ".html": "text/html;charset=utf-8",
   ".php": "text/html;charset=utf-8",
@@ -37,6 +38,6 @@ http.createServer((req, res) => {
     });
     res.end(data);
   });
-}).listen(4173, "127.0.0.1", () => {
-  console.log("http://127.0.0.1:4173");
+}).listen(port, "127.0.0.1", () => {
+  console.log(`http://127.0.0.1:${port}`);
 });
