@@ -1681,4 +1681,179 @@ p {
   .industry-demo-grid {
     grid-template-columns: 1fr;
   }
+
+  .demo-inspired-home .hero-bg {
+    background:
+      radial-gradient(circle at 88% 18%, rgba(110, 193, 228, .2), transparent 28%),
+      radial-gradient(circle at 72% 72%, rgba(40, 114, 250, .1), transparent 34%),
+      linear-gradient(180deg, #fafbfc, #f2f5f7);
+  }
+}
+
+/* Keep content readable if the enhancement script is unavailable. */
+.reveal {
+  opacity: 1;
+  transform: none;
+}
+
+.has-js .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+.has-js .reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.contact-conversion-grid {
+  display: grid;
+  grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr);
+  gap: 54px;
+  align-items: start;
+}
+
+.contact-conversion-grid > div > p,
+.contact-form > p {
+  margin-top: 14px;
+}
+
+.contact-copy-button {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 92px 1fr auto;
+  gap: 18px;
+  align-items: center;
+  min-height: 72px;
+  padding: 18px 22px;
+  border: 1px solid #e1e8ed;
+  border-radius: 8px;
+  background: #fff;
+  color: #192a3d;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0 12px 30px rgba(25, 42, 61, .055);
+}
+
+.contact-copy-button span {
+  font-weight: 560;
+}
+
+.contact-copy-button small,
+.contact-info-list a small,
+.form-helper {
+  color: #6f8193;
+  font-size: 13px;
+}
+
+.contact-form h3 {
+  margin-top: 8px;
+}
+
+.contact-form .form-helper {
+  margin-top: 12px;
+}
+
+.download-resource-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.download-resource-card {
+  min-height: 270px;
+  display: flex;
+  flex-direction: column;
+  padding: 28px;
+  border: 1px solid #e1e8ed;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 12px 30px rgba(25, 42, 61, .055);
+  transition: border-color .2s, box-shadow .2s, transform .2s;
+}
+
+.download-resource-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(40, 114, 250, .28);
+  box-shadow: 0 22px 48px rgba(40, 114, 250, .1);
+}
+
+.download-resource-card small {
+  color: #2872fa;
+  font-weight: 760;
+  text-transform: uppercase;
+}
+
+.download-resource-card h3 {
+  margin-top: 18px;
+}
+
+.download-resource-card p {
+  margin-top: 12px;
+}
+
+.download-resource-card span {
+  margin-top: auto;
+  padding-top: 24px;
+  color: #2872fa;
+  font-weight: 760;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid rgba(40, 114, 250, .38);
+  outline-offset: 3px;
+}
+
+@media (max-width: 1080px) {
+  .contact-conversion-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .download-resource-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .download-resource-card {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 680px) {
+  .contact-copy-button {
+    grid-template-columns: 74px 1fr;
+  }
+
+  .contact-copy-button small,
+  .contact-info-list a small {
+    grid-column: 2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+
+  .has-js .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .cursor-light {
+    display: none;
+  }
 }

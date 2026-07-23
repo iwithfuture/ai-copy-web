@@ -6,19 +6,21 @@ const heroBg = document.querySelector(".hero-bg");
 const cursorLight = document.querySelector(".cursor-light");
 const mobileToggle = document.querySelector(".mobile-toggle");
 const backTop = document.getElementById("backTop");
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 function updateScrollState() {
   const max = document.documentElement.scrollHeight - window.innerHeight;
   const pct = max > 0 ? (window.scrollY / max) * 100 : 0;
   if (progress) progress.style.width = `${pct}%`;
   if (header) header.classList.toggle("scrolled", window.scrollY > 18);
-  if (heroBg) heroBg.style.transform = `translateY(${window.scrollY * 0.04}px)`;
+  if (heroBg && !reducedMotion) heroBg.style.transform = `translateY(${window.scrollY * 0.04}px)`;
 }
 
 window.addEventListener("scroll", updateScrollState, { passive: true });
 updateScrollState();
 
 window.addEventListener("mousemove", (event) => {
+  if (reducedMotion) return;
   if (cursorLight) {
     cursorLight.style.left = `${event.clientX}px`;
     cursorLight.style.top = `${event.clientY}px`;
@@ -26,35 +28,76 @@ window.addEventListener("mousemove", (event) => {
 });
 
 if (mobileToggle) {
+  const mobileMenu = document.querySelector(".mobile-menu");
+  if (mobileMenu) {
+    mobileMenu.id ||= "mobile-navigation";
+    mobileToggle.setAttribute("aria-controls", mobileMenu.id);
+  }
+  mobileToggle.setAttribute("aria-expanded", "false");
   mobileToggle.addEventListener("click", () => {
     document.body.classList.toggle("menu-open");
+    const open = document.body.classList.contains("menu-open");
+    mobileToggle.setAttribute("aria-expanded", String(open));
+    mobileToggle.setAttribute("aria-label", open ? "关闭菜单" : "打开菜单");
   });
 }
 
-document.querySelectorAll(".mobile-menu a").forEach((link) => {
-  link.addEventListener("click", () => document.body.classList.remove("menu-open"));
+document.querySelector(".mobile-menu")?.addEventListener("click", (event) => {
+  if (event.target.closest("a")) {
+    document.body.classList.remove("menu-open");
+    if (mobileToggle) {
+      mobileToggle.setAttribute("aria-expanded", "false");
+      mobileToggle.setAttribute("aria-label", "打开菜单");
+    }
+  }
 });
 
-document.querySelectorAll(".nav-item").forEach((item) => {
+document.querySelectorAll(".nav-item").forEach((item, index) => {
   const trigger = item.querySelector(".nav-trigger");
-  item.addEventListener("mouseenter", () => item.classList.add("mega-open"));
-  item.addEventListener("mouseleave", () => item.classList.remove("mega-open"));
+  const mega = item.querySelector(".mega");
+  const syncExpanded = () => trigger?.setAttribute("aria-expanded", String(item.classList.contains("mega-open")));
+  if (trigger && mega) {
+    mega.id ||= `mega-menu-${index + 1}`;
+    trigger.setAttribute("aria-controls", mega.id);
+    trigger.setAttribute("aria-expanded", "false");
+  }
+  item.addEventListener("mouseenter", () => {
+    item.classList.add("mega-open");
+    syncExpanded();
+  });
+  item.addEventListener("mouseleave", () => {
+    item.classList.remove("mega-open");
+    syncExpanded();
+  });
 
   if (trigger) {
     trigger.addEventListener("click", (event) => {
       if (!item.querySelector(".mega")) return;
       event.preventDefault();
       document.querySelectorAll(".nav-item.mega-open").forEach((open) => {
-        if (open !== item) open.classList.remove("mega-open");
+        if (open !== item) {
+          open.classList.remove("mega-open");
+          open.querySelector(".nav-trigger")?.setAttribute("aria-expanded", "false");
+        }
       });
       item.classList.toggle("mega-open");
+      syncExpanded();
     });
   }
 });
 
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
-    document.querySelectorAll(".nav-item.mega-open").forEach((item) => item.classList.remove("mega-open"));
+    document.querySelectorAll(".nav-item.mega-open").forEach((item) => {
+      item.classList.remove("mega-open");
+      item.querySelector(".nav-trigger")?.setAttribute("aria-expanded", "false");
+    });
+    if (document.body.classList.contains("menu-open")) {
+      document.body.classList.remove("menu-open");
+      mobileToggle?.setAttribute("aria-expanded", "false");
+      mobileToggle?.setAttribute("aria-label", "打开菜单");
+      mobileToggle?.focus();
+    }
   }
 });
 
@@ -71,22 +114,55 @@ const revealObserver = new IntersectionObserver(
 
 document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
 
-document.querySelectorAll(".tab-btn").forEach((button) => {
-  button.addEventListener("click", () => {
+document.querySelectorAll(".tabs").forEach((shell, shellIndex) => {
+  const buttons = Array.from(shell.querySelectorAll(".tab-btn"));
+  const panels = Array.from(shell.querySelectorAll(".tab-panel"));
+  const buttonWrap = shell.querySelector(".tab-buttons");
+  buttonWrap?.setAttribute("role", "tablist");
+  buttons.forEach((button, buttonIndex) => {
     const id = button.dataset.tab;
-    const shell = button.closest(".tabs");
-    shell.querySelectorAll(".tab-btn").forEach((btn) => btn.classList.toggle("active", btn === button));
-    shell.querySelectorAll(".tab-panel").forEach((panel) => panel.classList.toggle("active", panel.dataset.panel === id));
+    const panel = panels.find((item) => item.dataset.panel === id);
+    button.id ||= `tab-${shellIndex + 1}-${buttonIndex + 1}`;
+    if (panel) {
+      panel.id ||= `tab-panel-${shellIndex + 1}-${buttonIndex + 1}`;
+      panel.setAttribute("role", "tabpanel");
+      panel.setAttribute("aria-labelledby", button.id);
+      button.setAttribute("aria-controls", panel.id);
+    }
+    button.setAttribute("role", "tab");
+    button.setAttribute("aria-selected", String(button.classList.contains("active")));
+    button.setAttribute("tabindex", button.classList.contains("active") ? "0" : "-1");
+  button.addEventListener("click", () => {
+      buttons.forEach((btn) => {
+        const active = btn === button;
+        btn.classList.toggle("active", active);
+        btn.setAttribute("aria-selected", String(active));
+        btn.setAttribute("tabindex", active ? "0" : "-1");
+      });
+      panels.forEach((item) => item.classList.toggle("active", item.dataset.panel === id));
+    });
   });
 });
 
-document.querySelectorAll(".faq-item").forEach((item) => {
+document.querySelectorAll(".faq-item").forEach((item, index) => {
   const question = item.querySelector(".faq-q");
   const answer = item.querySelector(".faq-a");
   const sync = () => {
-    if (answer) answer.style.maxHeight = item.classList.contains("active") ? `${answer.scrollHeight}px` : "0px";
+    const active = item.classList.contains("active");
+    if (answer) {
+      answer.style.maxHeight = active ? `${answer.scrollHeight}px` : "0px";
+      answer.setAttribute("aria-hidden", String(!active));
+    }
+    question?.setAttribute("aria-expanded", String(active));
   };
   if (question) {
+    question.id ||= `faq-question-${index + 1}`;
+    if (answer) {
+      answer.id ||= `faq-answer-${index + 1}`;
+      answer.setAttribute("role", "region");
+      answer.setAttribute("aria-labelledby", question.id);
+      question.setAttribute("aria-controls", answer.id);
+    }
     question.addEventListener("click", () => {
       item.classList.toggle("active");
       sync();
@@ -94,6 +170,49 @@ document.querySelectorAll(".faq-item").forEach((item) => {
   }
   sync();
 });
+
+document.querySelectorAll("[data-copy-value]").forEach((button) => {
+  button.addEventListener("click", async () => {
+    const value = button.dataset.copyValue || "";
+    const feedback = button.querySelector("small");
+    try {
+      await navigator.clipboard.writeText(value);
+      if (feedback) feedback.textContent = `已复制：${value}`;
+      window.dataLayer?.push({ event: "contact_copy", contact_method: "wechat" });
+    } catch {
+      if (feedback) feedback.textContent = `请手动复制：${value}`;
+    }
+  });
+});
+
+const consultationForm = document.getElementById("consultation-form");
+if (consultationForm) {
+  consultationForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const data = new FormData(consultationForm);
+    const labels = {
+      name: "姓名或称呼",
+      email: "联系邮箱",
+      company: "公司或品牌",
+      website: "现有网站",
+      service: "咨询服务",
+      market: "目标市场",
+      message: "主要问题",
+    };
+    const lines = Array.from(data.entries())
+      .filter(([, value]) => String(value).trim())
+      .map(([key, value]) => `${labels[key] || key}：${String(value).trim()}`);
+    const subject = `网站项目咨询 - ${String(data.get("company") || data.get("name") || "新咨询").trim()}`;
+    const body = `${lines.join("\n")}\n\n来源页面：${window.location.href}`;
+    const notice = consultationForm.querySelector(".form-notice");
+    if (notice) {
+      notice.hidden = false;
+      notice.textContent = "咨询内容已整理完成，正在打开邮件工具。请确认内容后发送。";
+    }
+    window.dataLayer?.push({ event: "consultation_email_open", service: data.get("service") || "" });
+    window.location.href = `mailto:iwithfuture@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  });
+}
 
 document.querySelectorAll(".tilt").forEach((card) => {
   card.addEventListener("mousemove", (event) => {
@@ -134,11 +253,9 @@ document.querySelectorAll(".tool-card").forEach((form) => {
     let text = "";
 
     if (tool.includes("quotation")) {
-      const low = Math.round((pages * 1800 + langs * 6000 + 18000) / 1000) * 1000;
-      const high = Math.round((pages * 2600 + langs * 9000 + 36000) / 1000) * 1000;
-      text = `预估报价区间：${low} - ${high} 元，建议先做核心页面和询盘追踪。`;
+      text = "方案评估建议：先确认页面数量、语言版本、产品资料和询盘追踪，再确定交付范围。";
     } else if (tool.includes("budget")) {
-      text = `按预算 ${budget} 元估算，可测试约 ${Math.round(budget / 8)} 次点击，建议预留 20% 做素材与落地页 A/B 测试。`;
+      text = "投放评估建议：先确认目标市场、关键词竞争、素材准备和落地页承接，再规划测试节奏。";
     } else if (tool.includes("generator") || tool.includes("description")) {
       text = `生成示例：For ${data.target || "your product"}, focus on reliable performance, certified quality, flexible customization and fast response for overseas buyers.`;
     } else {
@@ -290,7 +407,7 @@ function enhanceHomeLikeDemo() {
       <div class="container ecosystem-strip-inner">
         <a href="https://iwithfuture.com/" target="_blank" rel="noopener"><small>01 / Learn</small><b>先看博客教程</b><span>理解外贸建站、Google 工具和运营逻辑</span></a>
         <a href="https://demo.iwithfuture.com/" target="_blank" rel="noopener"><small>02 / Demo</small><b>再选模板方向</b><span>用 Demo 判断行业风格和页面结构</span></a>
-        <a href="pages/contact.html"><small>03 / Build</small><b>最后咨询落地</b><span>把模板编号、资料和预算发来确认方案</span></a>
+        <a href="pages/contact.html"><small>03 / Build</small><b>最后咨询落地</b><span>把模板编号和资料发来确认方案</span></a>
       </div>`;
     hero.insertAdjacentElement("afterend", strip);
   }
@@ -308,10 +425,10 @@ function enhanceContactFinder() {
       <div class="finder-panel reveal">
         <span class="section-kicker">Quick Match</span>
         <h2>先用 10 秒判断你更适合哪种建站。</h2>
-        <p>选择最接近你当前需求的情况，右侧会给出初步建议。真正报价仍需要根据页面、产品、语言和功能确认。</p>
+        <p>选择最接近你当前需求的情况，右侧会给出初步建议。真正方案仍需要根据页面、产品、语言和功能确认。</p>
         <div class="finder-options">
           <button class="finder-option active" type="button" data-plan="wp"><b>B2B 工厂 / 服务商</b><span>产品目录、资料、SEO、询盘</span></button>
-          <button class="finder-option" type="button" data-plan="ai"><b>轻量官网展示</b><span>预算有限，先快速上线</span></button>
+          <button class="finder-option" type="button" data-plan="ai"><b>轻量官网展示</b><span>资料轻量，先快速上线</span></button>
           <button class="finder-option" type="button" data-plan="shopify"><b>跨境电商 / DTC</b><span>商品、支付、订单和复购</span></button>
           <button class="finder-option" type="button" data-plan="custom"><b>品牌定制官网</b><span>设计差异化和完整交付</span></button>
         </div>
@@ -347,10 +464,10 @@ function enhanceHomeDecisionGuide() {
       </div>
       <div class="decision-grid">
         <a class="decision-card reveal" href="pages/ai-website.html">
-          <small>¥2,000 起</small>
+          <small>按需求评估</small>
           <h3>AI 官网展示建站</h3>
           <p>适合个人、SOHO、小型企业快速上线品牌展示页，先验证方向，不做复杂系统。</p>
-          <span>快速上线 / 轻量展示 / 预算友好</span>
+          <span>快速上线 / 轻量展示 / 易于启动</span>
         </a>
         <a class="decision-card reveal featured" href="pages/wordpress-website.html">
           <small>推荐长期运营</small>
@@ -378,10 +495,10 @@ function enhanceServiceConversionBlocks() {
   const serviceMap = {
     "ai-website.html": {
       name: "AI 官网展示建站",
-      fit: "想快速上线展示型官网、预算控制在起步阶段、资料还需要边做边整理。",
+      fit: "想快速上线展示型官网、先控制交付范围、资料还需要边做边整理。",
       notFit: "需要复杂后台、多语言内容矩阵、长期 SEO 内容运营或在线交易系统。",
       deliver: "首页、公司介绍、服务/产品展示、案例或优势模块、联系方式、基础移动端适配。",
-      prepare: "行业、参考网站、公司介绍、核心服务、联系方式、预算和上线时间。"
+      prepare: "行业、参考网站、公司介绍、核心服务、联系方式和上线时间。"
     },
     "wordpress-website.html": {
       name: "WordPress 外贸建站",
@@ -419,7 +536,7 @@ function enhanceServiceConversionBlocks() {
         <article class="conversion-card reveal"><small>咨询资料</small><h3>你需要准备</h3><p>${data.prepare}</p></article>
       </div>
       <div class="service-conversion-cta reveal">
-        <span>不确定该选哪一种？把行业、产品数量、参考网站和预算发来，我可以先帮你判断方向。</span>
+        <span>不确定该选哪一种？把行业、产品数量和参考网站发来，我可以先帮你判断方向。</span>
         <a class="btn btn-primary magnetic" href="contact.html">咨询建站方案</a>
       </div>
     </div>`;
@@ -486,7 +603,7 @@ function enhanceCustomerFacingTemplates() {
     "blog.html": ["博客中心", "适合把外贸建站、SEO、广告和运营经验整理成可持续访问的内容入口。", "教程内容", "经验沉淀", "搜索入口"],
     "knowledge-base.html": ["外贸建站知识库", "适合系统查看建站、SEO、广告、社媒和内容运营方法，帮助客户先判断方向。", "系统学习", "方案判断", "长期更新"],
     "q-and-a.html": ["问答中心", "适合把客户常问问题做成清晰答案，减少沟通成本，也增加搜索覆盖。", "常见问题", "快速理解", "搜索覆盖"],
-    "video-tutorials.html": ["视频教程中心", "适合通过视频理解建站、工具和运营流程，把复杂步骤变得更容易执行。", "视频教程", "工具演示", "步骤拆解"],
+    "video-tutorials.html": ["实操教程中心", "适合通过视频理解建站、工具和运营流程，把复杂步骤变得更容易执行。", "视频教程", "工具演示", "步骤拆解"],
     "downloads.html": ["资源下载中心", "适合下载建站清单、资料模板和运营表格，把准备工作提前做清楚。", "资料清单", "模板下载", "准备更快"],
     "blog-wordpress.html": ["WordPress 建站教程", "适合想了解 WordPress 外贸网站结构、主题、插件和后期维护逻辑的客户。", "WordPress", "网站结构", "后期维护"],
     "blog-shopify.html": ["Shopify 独立站教程", "适合想了解 Shopify 商品页、支付、应用、广告承接和复购运营的客户。", "Shopify", "商品页", "复购运营"],
@@ -494,9 +611,9 @@ function enhanceCustomerFacingTemplates() {
     "blog-ads.html": ["广告投放教程", "适合想了解 Google Ads、Facebook Ads、落地页和转化追踪关系的客户。", "广告投放", "落地页", "转化追踪"],
     "blog-ai-tools.html": ["AI 外贸工具教程", "适合想用 AI 提升建站、内容、客服和运营效率的客户。", "AI 工具", "内容效率", "运营辅助"],
     "process.html": ["服务流程", "适合想在合作前了解沟通、报价、资料准备、设计开发、上线和维护边界的客户。", "合作步骤", "交付边界", "上线维护"],
-    "pricing.html": ["价格方案", "适合先了解最低套餐价格和加价边界，再根据页面数量、功能、资料和运营要求确认报价。", "最低价格", "加价边界", "按需报价"],
+    "pricing.html": ["方案咨询", "适合先了解不同建站方式的服务范围，再根据页面数量、功能、资料和运营要求确认方案。", "服务范围", "交付边界", "按需评估"],
     "about.html": ["关于吾日三省吾身", "适合了解我为什么做外贸建站、如何看待网站运营，以及能提供哪些长期支持。", "建站经验", "长期运营", "可信合作"],
-    "contact.html": ["咨询建站方案", "适合把行业、预算、参考网站和当前问题一次说清楚，我会先帮你判断更适合哪种建站方式。", "需求判断", "方案建议", "邮件沟通"]
+    "contact.html": ["咨询建站方案", "适合把行业、参考网站和当前问题一次说清楚，我会先帮你判断更适合哪种建站方式。", "需求判断", "方案建议", "邮件沟通"]
   };
 
   const h1 = document.querySelector("h1");
@@ -551,7 +668,7 @@ function enhanceCustomerFacingTemplates() {
     if (heading) heading.textContent = `${titleText}落地时，按这四步推进。`;
     const items = executionSection.querySelectorAll(".feature-item, .process-item");
     const steps = [
-      ["确认目标与边界", `先确认你的行业、目标市场、预算和当前资料，避免一开始就做成不适合客户的页面。`],
+      ["确认目标与边界", `先确认你的行业、目标市场和当前资料，避免一开始就做成不适合客户的页面。`],
       ["整理内容与结构", `把${tagA}、${tagB}和客户常问问题整理成页面结构，保证客户能快速找到重点。`],
       ["设置转化入口", `根据${tagC}设计按钮、表单、邮箱、下载或咨询入口，让访问者有明确下一步。`],
       ["上线后复盘优化", "根据访问、点击、询盘和搜索数据，持续调整页面内容、CTA 和后续运营重点。"],
@@ -573,15 +690,110 @@ function enhanceCustomerFacingTemplates() {
     if (!kicker || !title) return;
     if (kicker.textContent.trim().toLowerCase() === "related" && title.textContent.includes("你可能还需要")) {
       title.textContent = "继续查看这些相关内容，帮你把方案判断完整。";
-      if (intro) intro.textContent = "如果你还不确定该先做网站、SEO、广告还是社媒，可以从这些页面继续对照自己的阶段和预算。";
+      if (intro) intro.textContent = "如果你还不确定该先做网站、SEO、广告还是社媒，可以从这些页面继续对照自己的阶段。";
     }
   });
 
   document.querySelectorAll(".cta").forEach((cta) => {
     const ctaTitle = cta.querySelector("h2");
     const ctaText = cta.querySelector("p");
-    if (ctaTitle && ctaTitle.textContent.includes("先做一次网站增长诊断")) ctaTitle.textContent = "把你的行业、预算和参考网站发来，先判断方向。";
-    if (ctaText && ctaText.textContent.includes("告诉我们你的网站")) ctaText.textContent = "不用一开始就准备完整需求。先说清你的产品、目标市场、预算范围和想参考的网站，我会帮你判断更适合哪种页面结构和建站方式。";
+    if (ctaTitle && ctaTitle.textContent.includes("先做一次网站增长诊断")) ctaTitle.textContent = "把你的行业和参考网站发来，先判断方向。";
+    if (ctaText && ctaText.textContent.includes("告诉我们你的网站")) ctaText.textContent = "不用一开始就准备完整需求。先说清你的产品、目标市场和想参考的网站，我会帮你判断更适合哪种页面结构和建站方式。";
+  });
+}
+
+function enhanceTutorialCategoryPages() {
+  const slug = location.pathname.split("/").pop();
+  const content = {
+    "blog-wordpress.html": {
+      cards: [
+        ["先搭稳运行环境", "从域名、主机、SSL、WordPress 安装和基础设置开始，避免后续速度、安全与收录问题反复返工。"],
+        ["再规划页面与内容", "按产品、应用、公司能力、资料下载和 FAQ 组织栏目，让网站既方便维护，也能承接搜索需求。"],
+        ["最后建立维护机制", "明确主题插件更新、备份、安全、性能和内容发布节奏，让网站上线后仍然可持续运营。"],
+      ],
+      steps: [
+        ["完成安装与基础设置", "配置域名、HTTPS、固定链接、管理员权限和必要的安全措施。"],
+        ["搭建核心页面结构", "先完成首页、产品分类、产品详情、关于、联系和必要的信任页面。"],
+        ["补齐 SEO 与数据工具", "设置标题描述、站点地图、Search Console、GA4 和关键咨询事件。"],
+        ["按周期备份和更新", "建立更新前备份、兼容性检查、速度检查和内容维护清单。"],
+      ],
+    },
+    "blog-shopify.html": {
+      cards: [
+        ["店铺基础与商品目录", "先确认市场、币种、支付、物流和商品分类，减少正式上架后的结构调整。"],
+        ["商品页与购买信任", "用清晰图片、规格、配送退换、评价和 FAQ 回答购买前最关键的问题。"],
+        ["追踪与复购运营", "连接广告和分析工具，持续观察加购、结账、购买和邮件复购表现。"],
+      ],
+      steps: [
+        ["配置市场与交易设置", "完成域名、币种、支付、税费、物流区域和通知邮件设置。"],
+        ["建立商品与集合结构", "统一商品信息、变体、图片、集合和站内筛选逻辑。"],
+        ["检查购买转化路径", "从广告入口到商品、购物车和结账完整测试移动端流程。"],
+        ["复盘数据与复购", "根据商品和渠道表现优化页面、素材、邮件及再营销受众。"],
+      ],
+    },
+    "blog-seo.html": {
+      cards: [
+        ["关键词与搜索意图", "区分产品词、行业词、问题词和对比词，先判断用户真正想找什么。"],
+        ["技术基础与页面结构", "确保页面可抓取、可索引、加载稳定，并让主题、层级和内链关系清晰。"],
+        ["内容集群与权威积累", "围绕核心业务持续发布可验证内容，并通过内链、引用与行业曝光建立信任。"],
+      ],
+      steps: [
+        ["完成网站与竞品诊断", "检查收录、流量、关键词、页面结构和竞争结果，建立初始基线。"],
+        ["建立关键词页面地图", "把关键词分配到产品页、行业页、指南、FAQ 和对比内容，避免互相竞争。"],
+        ["按优先级发布和优化", "先修高影响页面，再持续扩展内容集群与内部链接。"],
+        ["按月复盘排名与询盘", "同时观察曝光、点击、有效询盘和页面贡献，不用单日波动作判断。"],
+      ],
+    },
+    "blog-ads.html": {
+      cards: [
+        ["账户与关键词结构", "让广告组围绕明确产品和意图组织，减少宽泛流量消耗预算。"],
+        ["素材与落地页一致", "广告承诺、页面标题、卖点和行动按钮保持一致，降低点击后的流失。"],
+        ["转化追踪与实验", "先确认表单、电话、邮件等关键事件可追踪，再比较素材、受众和页面表现。"],
+      ],
+      steps: [
+        ["确认目标和有效转化", "定义什么是合格询盘，并排除浏览、误点等低价值事件。"],
+        ["建立小范围测试", "从高意图关键词或明确受众起步，控制变量和初期预算。"],
+        ["优化素材与落地页", "根据搜索词、点击和页面行为调整广告表达与承接内容。"],
+        ["按有效询盘复盘", "用询盘质量和成交反馈判断渠道，而不只看点击率或表单数量。"],
+      ],
+    },
+    "blog-ai-tools.html": {
+      cards: [
+        ["从具体任务选工具", "先明确要整理资料、生成初稿、翻译、分析还是自动化，再选择合适工具。"],
+        ["提供可靠业务上下文", "把产品参数、目标客户、品牌语气和参考资料说清楚，减少空泛输出。"],
+        ["保留事实核查与人工审核", "AI 适合提高效率，但价格、参数、认证和客户承诺必须由人确认。"],
+      ],
+      steps: [
+        ["选择一个高频任务", "从重复且容易验收的工作开始，不要一次把整个业务交给自动化。"],
+        ["整理输入资料与规则", "准备可信来源、输出格式、禁用表达和审核标准。"],
+        ["生成、校对并记录问题", "核对事实、语气、版权和敏感信息，把常见错误写回流程。"],
+        ["衡量节省时间与质量", "比较人工耗时、返工率和最终效果，再决定是否扩大使用范围。"],
+      ],
+    },
+  }[slug];
+  if (!content) return;
+
+  const findSection = (name) => Array.from(document.querySelectorAll(".section")).find((section) =>
+    section.querySelector(".section-kicker")?.textContent.trim().toLowerCase() === name
+  );
+  const growthSection = findSection("growth system");
+  growthSection?.querySelectorAll(".card").forEach((card, index) => {
+    const item = content.cards[index];
+    if (!item) return;
+    const title = card.querySelector("h3");
+    const text = card.querySelector("p");
+    if (title) title.textContent = item[0];
+    if (text) text.textContent = item[1];
+  });
+
+  const executionSection = findSection("execution map");
+  executionSection?.querySelectorAll(".feature-item, .process-item").forEach((item, index) => {
+    const step = content.steps[index];
+    if (!step) return;
+    const title = item.querySelector("b, h3");
+    const text = item.querySelector("span, p");
+    if (title) title.textContent = step[0];
+    if (text) text.textContent = step[1];
   });
 }
 
@@ -728,7 +940,7 @@ function enhanceIndustrySolutionPages() {
       title: "外贸 SOHO 获客方案",
       hero: "外贸 SOHO 网站要轻量、清晰、可信。重点是让客户知道你能提供什么产品或服务、如何合作、如何快速联系，而不是堆很多复杂栏目。",
       outcome: "用轻量官网承接名片、社媒、邮件和 Google 搜索流量，形成稳定联系入口。",
-      fit: ["个人或小团队刚开始做海外获客", "产品线不复杂，但需要专业形象", "预算有限，希望先上线再逐步优化"],
+      fit: ["个人或小团队刚开始做海外获客", "产品线不复杂，但需要专业形象", "希望先上线再逐步优化"],
       structure: ["首页：定位、服务/产品、优势和联系方式", "产品或服务页：按最核心类别展示", "关于页：经验、合作方式和信任信息", "联系页：邮箱、微信、WhatsApp 和需求表单"],
       conversion: ["首屏放清楚联系入口", "每个服务模块都能进入咨询", "用案例或流程解释合作方式", "后续可逐步升级成 WordPress 内容站"],
       seo: ["niche product / sourcing / supplier service", "目标市场 + 产品/服务组合词", "常见采购问题和合作流程", "从少量高意图页面开始沉淀"],
@@ -884,12 +1096,23 @@ function enhanceOrganicGrowthEntry() {
   }
 
   const mobileMenu = document.querySelector(".mobile-menu");
-  if (mobileMenu && !mobileMenu.querySelector('a[href$="b2b-organic-growth.html"]')) {
-    const link = document.createElement("a");
-    link.href = href;
-    link.textContent = "B2B " + label;
-    const seoLink = mobileMenu.querySelector('a[href$="seo.html"]');
-    seoLink ? seoLink.insertAdjacentElement("afterend", link) : mobileMenu.prepend(link);
+  if (mobileMenu) {
+    const mobileLinks = [
+      ["b2b-organic-growth.html", "B2B " + label],
+      ["pricing.html", "方案咨询"],
+      ["process.html", "服务流程"],
+      ["q-and-a.html", "问答中心"],
+      ["video-tutorials.html", "实操教程中心"],
+      ["about.html", "关于我们"],
+    ];
+    const contactLink = mobileMenu.querySelector('a[href$="contact.html"]');
+    mobileLinks.forEach(([path, text]) => {
+      if (mobileMenu.querySelector(`a[href$="${path}"]`)) return;
+      const link = document.createElement("a");
+      link.href = inPages ? path : `pages/${path}`;
+      link.textContent = text;
+      mobileMenu.insertBefore(link, contactLink || null);
+    });
   }
 
   const marketingFooter = Array.from(document.querySelectorAll(".site-footer .footer-grid > div")).find((group) => {
@@ -912,4 +1135,5 @@ enhanceServiceConversionBlocks();
 enhanceLicensedTrustBlocks();
 enhanceContactFinder();
 enhanceCustomerFacingTemplates();
+enhanceTutorialCategoryPages();
 enhanceIndustrySolutionPages();

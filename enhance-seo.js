@@ -18,9 +18,43 @@ const descriptionOverrides = {
   "pages/content-seo.html": "内容 SEO 围绕海外买家的真实问题、产品场景、对比需求和采购决策，规划文章、指南、FAQ、案例和产品页内容，提升自然搜索覆盖。",
   "pages/link-building.html": "外链与品牌曝光通过行业资源、数字 PR、可引用内容、合作伙伴页面和高质量链接建设，提升外贸网站主题权威和品牌可信度。",
   "pages/social-media.html": "外贸社媒运营统一规划 LinkedIn、Facebook、Instagram、YouTube 和邮件内容节奏，用品牌内容、产品场景和线索入口承接海外客户。",
-  "pages/pricing.html": "外贸建站价格页面说明 AI 官网、模板建站、仿站和定制建站的套餐起价，最终报价根据页面数量、设计要求、产品上传、语言和功能另行确认。",
-  "pages/contact.html": "咨询外贸建站方案，请发送网站需求、行业、目标市场、预算和参考网站到 iwithfuture@gmail.com，获取 WordPress、Shopify 或 AI 官网建站建议。",
-  "pages/about.html": "了解吾日三省吾身如何把 WordPress 建站经验、外贸内容、SEO 方法、正版插件和长期维护能力整合成外贸网站增长服务。"
+  "pages/pricing.html": "外贸建站方案页面说明 AI 官网、模板建站、仿站和定制建站的服务范围，具体交付内容根据页面数量、设计要求、产品上传、语言和功能另行确认。",
+  "pages/contact.html": "咨询外贸建站方案，请发送网站需求、行业、目标市场和参考网站到 iwithfuture@gmail.com，获取 WordPress、Shopify 或 AI 官网建站建议。",
+  "pages/about.html": "了解吾日三省吾身如何把 WordPress 建站经验、外贸内容、SEO 方法、正版插件和长期维护能力整合成外贸网站增长服务。",
+  "pages/b2b-organic-growth.html": "面向外贸工厂和 B2B 企业的自然流量运营服务，通过 SEO、GEO、AEO、页面优化、内容建设和询盘追踪，持续沉淀可复盘的获客资产。",
+  "pages/b2b-factory.html": "B2B 工厂出海网站方案，围绕产品目录、生产能力、认证资料、应用场景和询盘路径，帮助海外采购快速判断供应商实力。",
+  "pages/machinery.html": "机械设备外贸网站方案，清晰展示型号参数、应用场景、运行视频、技术资料和售后能力，缩短海外客户的选型与询价路径。",
+  "pages/industrial-parts.html": "工业零部件外贸网站方案，通过材质、尺寸、公差、兼容型号和定制能力组织产品目录，方便采购提交图纸和规格询价。",
+  "pages/home-building.html": "家居建材出海网站方案，用产品系列、材质工艺、场景图片、项目展示和资料下载，兼顾品牌质感与工程采购信息。",
+  "pages/electronics.html": "电子电器外贸网站方案，集中展示产品矩阵、功能参数、认证资料、应用场景和经销合作入口，承接批发与 OEM 询盘。",
+  "pages/medical-devices.html": "医疗器械外贸网站方案，围绕产品用途、合规认证、技术资料、适用机构和联系流程，建立专业可信的海外展示与询盘入口。",
+  "pages/new-energy.html": "新能源企业出海网站方案，清晰呈现技术路线、产品参数、应用项目、认证资料和合作模式，服务海外项目型客户决策。",
+  "pages/beauty.html": "美妆个护出海网站方案，用产品系列、成分卖点、使用场景、品牌内容和批发合作入口，承接品牌展示与渠道询盘。",
+  "pages/cross-border-ecommerce.html": "跨境电商品牌独立站方案，围绕商品展示、支付订单、评价信任、广告承接和复购运营，搭建可追踪的在线销售路径。",
+  "pages/foreign-trade-soho.html": "外贸 SOHO 获客方案，以轻量官网、重点产品页、内容更新和清晰联系入口，帮助个人外贸从低成本起步并持续积累客户。",
+  "pages/custom-development.html": "React 与 Next.js 定制开发服务，面向有特殊交互、业务流程、数据接口或性能要求的项目，提供可扩展的网站实现方案。",
+  "pages/multilingual-website.html": "多语言外贸网站建设，规划语言目录、本地化内容、hreflang、翻译维护和不同市场的询盘入口，服务多国家业务拓展。",
+  "pages/landing-pages.html": "外贸广告落地页设计，聚焦单一产品或服务卖点、信任证明、表单和转化追踪，承接 Google 与社媒广告流量。",
+  "pages/speed-security.html": "网站速度与安全优化服务，处理图片与缓存、Core Web Vitals、备份更新、安全风险和稳定性问题，改善访问与维护体验。",
+  "pages/website-maintenance.html": "网站维护与增长托管服务，覆盖更新备份、安全检查、内容发布、数据复盘和持续优化，让外贸网站保持可用并持续积累。",
+  "pages/google-sem.html": "Google SEM 代运营服务，从关键词、广告结构、落地页和转化追踪入手，控制无效点击并提升外贸询盘质量。",
+  "pages/google-ads-landing.html": "Google Ads 落地页优化，统一广告意图、页面卖点、信任内容、表单与转化事件，减少点击后的流失。",
+  "pages/facebook-ads.html": "Facebook 与 Instagram 广告投放方案，围绕受众、素材、落地页、像素事件和再营销持续测试，寻找可扩展的获客组合。",
+  "pages/linkedin-operation.html": "外贸 LinkedIn 运营服务，通过企业主页、专业内容、目标客户触达和跟进节奏，帮助 B2B 企业持续建立行业信任。",
+  "pages/youtube-operation.html": "外贸 YouTube 运营服务，规划产品演示、安装教程、应用案例和搜索型视频内容，降低客户理解成本并引导网站询盘。",
+  "pages/conversion-optimization.html": "外贸网站转化率优化，从首屏信息、信任内容、按钮、表单和访问数据入手，减少流失并提升有效询盘比例。",
+  "pages/blog.html": "外贸增长博客中心，整理 WordPress、Shopify、Google SEO、广告投放、AI 工具和日常运营方法，帮助企业判断并执行增长任务。",
+  "pages/knowledge-base.html": "外贸建站知识库，按建站、SEO、广告、社媒和内容运营整理实用方法，为方案选择和团队执行提供清晰入口。",
+  "pages/video-tutorials.html": "外贸实操教程中心，汇总 WordPress 建站、GA4、GTM、AI 工具和客户开发教程，并按学习路径持续补充可执行内容。",
+  "pages/downloads.html": "外贸运营资源下载中心，提供网站上线检查清单、B2B 内容简报模板和自然流量月度复盘表，支持直接下载使用。",
+  "pages/process.html": "外贸建站与自然流量服务流程，说明需求诊断、资料准备、页面规划、设计开发、上线检查和持续运营各阶段的工作边界。",
+  "pages/q-and-a.html": "外贸建站问答中心，集中解答网站类型、资料准备、SEO、交付维护、自然流量和合作方式等常见问题。",
+  "pages/blog-wordpress.html": "WordPress 外贸建站教程，覆盖主机安装、页面结构、主题插件、速度安全、SEO 设置和后期维护等实操内容。",
+  "pages/blog-shopify.html": "Shopify 独立站教程，整理店铺设置、商品页、支付物流、应用选择、广告追踪和复购运营等关键步骤。",
+  "pages/blog-seo.html": "Google SEO 教程，系统梳理关键词研究、搜索意图、技术检查、内容集群、内链外链和效果复盘方法。",
+  "pages/blog-ads.html": "外贸广告投放教程，覆盖 Google Ads、Facebook Ads、落地页、素材测试和转化追踪，帮助减少无效流量。",
+  "pages/blog-ai-tools.html": "AI 外贸工具教程，介绍内容辅助、资料整理、客户沟通和运营自动化场景，并强调事实核查与人工审核。",
+  "pages/sitemap.html": "吾日三省吾身全站栏目地图，快速查找外贸建站、SEO、自然流量运营、广告、行业方案、教程资源和联系入口。"
 };
 
 const serviceKeywords = [
@@ -85,22 +119,22 @@ function pageKind(title, relativePath) {
 function questionsFor(title, desc, kind) {
   if (kind === "contact") {
     return [
-      ["如何咨询建站方案？", "可以把公司网站、行业、目标市场、预算、参考网站和当前问题发送到 iwithfuture@gmail.com，用于判断更适合 WordPress、Shopify、AI 官网还是定制建站。"],
-      ["咨询前需要准备什么？", "建议准备产品资料、目标客户、主要国家、参考网站、预算范围、期望上线时间和是否需要 SEO、社媒或长期维护。"],
-      ["会直接给固定报价吗？", "页面展示的是套餐起价，最终价格会根据页面数量、设计复杂度、产品上传、语言版本、功能和维护要求确认。"]
+      ["如何咨询建站方案？", "可以把公司网站、行业、目标市场、参考网站和当前问题发送到 iwithfuture@gmail.com，用于判断更适合 WordPress、Shopify、AI 官网还是定制建站。"],
+      ["咨询前需要准备什么？", "建议准备产品资料、目标客户、主要国家、参考网站、期望上线时间和是否需要 SEO、社媒或长期维护。"],
+      ["会直接给固定方案吗？", "页面不展示公开价格，具体方案会根据页面数量、设计复杂度、产品上传、语言版本、功能和维护要求确认。"]
     ];
   }
   if (kind === "service") {
     return [
-      [`${title}适合谁？`, `${title}适合希望用网站承接海外客户、搜索流量、询盘表单和长期运营内容的外贸企业，具体方案会根据行业、预算和目标市场调整。`],
+      [`${title}适合谁？`, `${title}适合希望用网站承接海外客户、搜索流量、询盘表单和长期运营内容的外贸企业，具体方案会根据行业和目标市场调整。`],
       [`${title}主要解决什么问题？`, desc],
-      [`${title}如何开始？`, "先梳理产品、客户、目标市场、参考网站和预算，再确认页面结构、内容资料、SEO 方向、转化入口和上线后的维护计划。"]
+      [`${title}如何开始？`, "先梳理产品、客户、目标市场和参考网站，再确认页面结构、内容资料、SEO 方向、转化入口和上线后的维护计划。"]
     ];
   }
   return [
     [`这个页面主要讲什么？`, desc],
     ["为什么这对外贸网站重要？", "清晰的网站结构、可回答的问题内容和可追踪的转化路径，可以帮助搜索引擎、AI 搜索和海外买家更快理解网站价值。"],
-    ["下一步应该做什么？", "建议先确认目标市场、核心产品、参考网站和预算，再选择 WordPress、Shopify、AI 官网或定制建站方案。"]
+    ["下一步应该做什么？", "建议先确认目标市场、核心产品、参考网站和资料准备情况，再选择 WordPress、Shopify、AI 官网或定制建站方案。"]
   ];
 }
 
@@ -192,9 +226,12 @@ function seoHead({ title, desc, url, kind }) {
     `<meta property="og:title" content="${escapedTitle}">`,
     `<meta property="og:description" content="${escapedDesc}">`,
     `<meta property="og:url" content="${escapedUrl}">`,
+    `<meta property="og:image" content="${defaultImage}">`,
+    `<meta property="og:image:alt" content="吾日三省吾身外贸网站增长服务">`,
     `<meta name="twitter:card" content="summary_large_image">`,
     `<meta name="twitter:title" content="${escapedTitle}">`,
     `<meta name="twitter:description" content="${escapedDesc}">`,
+    `<meta name="twitter:image" content="${defaultImage}">`,
     `<meta name="theme-color" content="#2872fa">`,
     `<script type="application/ld+json">${graphFor({ title, desc, url, kind })}</script>`
   ].join("");
