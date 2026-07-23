@@ -185,35 +185,6 @@ document.querySelectorAll("[data-copy-value]").forEach((button) => {
   });
 });
 
-const consultationForm = document.getElementById("consultation-form");
-if (consultationForm) {
-  consultationForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const data = new FormData(consultationForm);
-    const labels = {
-      name: "姓名或称呼",
-      email: "联系邮箱",
-      company: "公司或品牌",
-      website: "现有网站",
-      service: "咨询服务",
-      market: "目标市场",
-      message: "主要问题",
-    };
-    const lines = Array.from(data.entries())
-      .filter(([, value]) => String(value).trim())
-      .map(([key, value]) => `${labels[key] || key}：${String(value).trim()}`);
-    const subject = `网站项目咨询 - ${String(data.get("company") || data.get("name") || "新咨询").trim()}`;
-    const body = `${lines.join("\n")}\n\n来源页面：${window.location.href}`;
-    const notice = consultationForm.querySelector(".form-notice");
-    if (notice) {
-      notice.hidden = false;
-      notice.textContent = "咨询内容已整理完成，正在打开邮件工具。请确认内容后发送。";
-    }
-    window.dataLayer?.push({ event: "consultation_email_open", service: data.get("service") || "" });
-    window.location.href = `mailto:iwithfuture@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  });
-}
-
 document.querySelectorAll(".tilt").forEach((card) => {
   card.addEventListener("mousemove", (event) => {
     const rect = card.getBoundingClientRect();

@@ -219,7 +219,6 @@ p {
 .panel-cell,
 .directory-group,
 .contact-info-list a,
-.contact-form,
 .tool-card,
 .price-card,
 .plugin-card,
@@ -399,7 +398,6 @@ p {
 .panel-cell,
 .pricing-grid-four .price-card,
 .ecosystem-card,
-.contact-form,
 .tool-card {
   background: linear-gradient(180deg, #fff, #fbfdff);
 }
@@ -477,18 +475,8 @@ p {
   color: #fff;
 }
 
-.contact-form input,
-.contact-form select,
-.contact-form textarea,
 .tool-card input {
   border-color: #d8e2eb;
-}
-
-.contact-form input:focus,
-.contact-form select:focus,
-.contact-form textarea:focus {
-  border-color: #2872fa;
-  box-shadow: 0 0 0 4px rgba(40, 114, 250, .12);
 }
 
 @media (max-width: 1080px) {
@@ -1714,7 +1702,7 @@ p {
 }
 
 .contact-conversion-grid > div > p,
-.contact-form > p {
+.contact-direct-guide > p {
   margin-top: 14px;
 }
 
@@ -1740,18 +1728,47 @@ p {
 }
 
 .contact-copy-button small,
-.contact-info-list a small,
-.form-helper {
+.contact-info-list a small {
   color: #6f8193;
   font-size: 13px;
 }
 
-.contact-form h3 {
+.contact-direct-guide {
+  padding: 32px;
+  border: 1px solid #e1e8ed;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 18px 44px rgba(25, 42, 61, .07);
+}
+
+.contact-direct-guide h3 {
   margin-top: 8px;
 }
 
-.contact-form .form-helper {
-  margin-top: 12px;
+.contact-direct-guide ul {
+  display: grid;
+  gap: 12px;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contact-direct-guide li {
+  position: relative;
+  padding-left: 22px;
+  color: #40546a;
+  line-height: 1.65;
+}
+
+.contact-direct-guide li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .68em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #2872fa;
 }
 
 .download-resource-grid {
